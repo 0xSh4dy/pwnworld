@@ -36,17 +36,17 @@ This is the basic work. Next steps will be decided after this part has been comp
 
 API endpoints:
 
-/home   : homepage
-/about  : about
-/webshell : webshell
-/contact  : contact us
-/leaderboard   : leaderboard
-/challenges/web-exploitation/challengeName      :For Web-Exploitation
-/challenges/rev/challengeName                   :For Reverse Engineering
-/challenges/binary-exploitation/challengeName   : For pwn(Binary Exploitation)
-/challenges/forensics/challengeName             : For digial forensics
-/challenges/cryptography/challengeName          : For cryptography
-/challenges/jailbreak/challengeName             : For jailbreak
+/home   : homepage <br>
+/about  : about  <br>
+/webshell : webshell  <br>
+/contact  : contact us  <br>
+/leaderboard   : leaderboard <br>
+/challenges/web-exploitation/challengeName      :For Web-Exploitation <br>
+/challenges/rev/challengeName                   :For Reverse Engineering <br>
+/challenges/binary-exploitation/challengeName   : For pwn(Binary Exploitation)  <br>
+/challenges/forensics/challengeName             : For digial forensics <br>
+/challenges/cryptography/challengeName          : For cryptography  <br>
+/challenges/jailbreak/challengeName             : For jailbreak <br>
 
 
 # Important Note: Do not push your code on the master branch. Create a separate branch, with the branch name as your name and then push code into it. 

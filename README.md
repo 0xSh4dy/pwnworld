@@ -1,4 +1,4 @@
-### pwnworld: The hacking, CTF platform
+# pwnworld: The hacking, CTF platform
 
 #### pwn means to gain access or hack some computer, website, service, etc.
 

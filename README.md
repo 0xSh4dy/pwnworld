@@ -28,7 +28,7 @@ Note: The homepage must contain a navigation bar. The navigation bar should cont
 Each challenge should show the difficulty level and the number of users that have solved it.
 
 Starting steps:
-#### Rakshit start developing the Webshell.
+#### Rakshit will start developing the Webshell.
 #### Rishav will create the design for the login, signup and homepage. 
 #### Rishabh and Prabal will start coding the login, signup and homepage after the design is completed.
 

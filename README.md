@@ -18,7 +18,7 @@ Development Environment: You may do it on Windows,but I strongly recommend Linux
 
 Basic Work:
 ### Rakshit: Webshell, database admin, backend, challenge creator, penetration testing
-### Rishav: Design,backend, frontend(HTML,CSS<JS< Templates), database operations
+### Rishav: Design,backend, frontend(HTML,CSS, Templates), database operations
 ### Rishabh: Frontend(HTML,CSS, JS, Templates), updating README.md
 ### Prabal: Frontend(HTML,CSS, JS, Templates), updating README.md
 

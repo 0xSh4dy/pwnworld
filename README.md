@@ -51,7 +51,11 @@ API endpoints:
 
 # Important Note: Do not push your code on the master branch. Create a separate branch, with the branch name as your name and then push code into it. 
 
-## To start working, clone the repository and create files there
+## To start working, clone the repository, create files and code
+```
+git clone https://github.com/r4ksh1t0011/pwnworld
+```
+
 Create html files in the templates folder.
 Create JS and CSS files in the js and css folder in the static folder respectively.
 Add icons, images in the images folder.

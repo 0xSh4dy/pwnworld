@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Admin</title>
+</head>
+<style>
+    body{
+        background-color: black;
+        color: rgb(64, 192, 14);
+    }
+    input{
+        display: block;
+        margin: auto;
+        height: 30px;
+        padding: 5px;
+        margin-top: 5vh;
+        width: 30vw;
+        background-color: rgb(181, 186, 190);
+    }
+    p{
+        font-size: 30px;
+    }
+    .container{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="container">
+    <p>Can you login as admin?</p>
+    <form action="/challenges/web/babyAdmin" method="post">
+        {%csrf_token%}
+        <input type="text" name="username" id="username" placeholder="Enter username">
+        <input style="width: 70px;" type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>

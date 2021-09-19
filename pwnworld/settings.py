@@ -12,26 +12,28 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j^eu#f)&5)-g1(b(nw&23#s$ctsfy*_e2f$zhlw_r5h*j7xecq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
+SECRET_KEY = config('SECRET_KEY')
+db_password = config('DB_PASSWORD')
+email = config('EMAIL')
+email_password = config('EMAIL_PASSWORD')
 # Application definition
 
 INSTALLED_APPS = [
     'stuff',
+    'challenges',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'pwnworld.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join("stuff/templates")],
+        'DIRS': [os.path.join("stuff/templates"),os.path.join("challenges/templates/web"),os.path.join("challenges/templates/cryptography")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pwnworld',
         'USER': 'pwnworld_admin',
-        'PASSWORD': 'your_pass',
+        'PASSWORD': db_password,
         'HOST': 'localhost',
         'PORT':'3306'
         
@@ -120,17 +122,18 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'your_email'
+EMAIL_HOST_USER = email
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = 'your_password'
+EMAIL_HOST_PASSWORD = email_password
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    "stuff/static"
+    "stuff/static",
+    "challenges/static",
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

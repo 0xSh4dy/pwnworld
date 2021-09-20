@@ -4,6 +4,8 @@
 
 ##### pwnworld is a platform where both , beginners and advanced level players can practice their skills in Cyber Security (both cyber attack and defense).This platform will contain hundreds of challenges, at least 20 from each category. Different categories are : Binary Exploitation, Reverse Engineering, Web Exploitation, Digital Forensics, Jailbreak and Cryptography.
 
+### Note for site developers: You need to preconfigure Django and Apache2 server on your computer
+
 ##### Frameworks, Technology to be used:
 
 Frontend : HTML, CSS ,JS(basic JS with Fetch API).You may use TypeScript for avoiding JS bugs,

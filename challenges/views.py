@@ -10,6 +10,8 @@ cursor = connection.cursor()
 
 
 # Web Challenges
+# Note: Challenges related to Apache2 and php are not here, they are in a directory called web_php 
+# which will be served using an Apache2 server running on Ubuntu
 
 # Challenge1 : baby_s3qu3l
 def baby_sequel(request):
@@ -78,6 +80,17 @@ def babyAdmin(request):
                 response1.set_cookie("user",cookieValue)      
             return response1
     return response
+
+
+# Challenge5: Where are you?
+def whereAreYou(request):
+    return render(request,"whereAreYou.html")
+def w723234(request):
+    return render(request,"w723234.html")
+
+
+
+
         
 
 

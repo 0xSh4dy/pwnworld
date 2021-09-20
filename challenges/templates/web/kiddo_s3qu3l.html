@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kiddo_s3qu3l</title>
+    <style>
+        body{
+            background-color: black;
+            color: rgb(12, 231, 12);
+        }
+        input{
+            display: block;
+            margin: auto;
+            padding: 5px;
+            margin-top: 10px;
+        }
+        .inp{
+            width: 30vw;
+        }
+        .inps{
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .inps:hover{
+            cursor: pointer;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Can you login as admin?</h2>
+    <form action="/challenges/web/kiddo_s3qu3l" method="POST">
+        {%csrf_token%}
+        <input class="inp" type="text" name="username" placeholder="Enter username">
+        <input class="inp" type="password" name="password" placeholder="Enter password">
+        <input class="inps" type="submit" value="Login">
+    </form>
+</body>
+</html>

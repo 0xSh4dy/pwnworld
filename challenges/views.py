@@ -88,6 +88,27 @@ def whereAreYou(request):
 def w723234(request):
     return render(request,"w723234.html")
 
+#Challenge6: kiddo_s3qu3l
+def kiddo_s3qu3l(request):
+    if request.POST:
+        username = str(request.POST.get('username'))
+        password = str(request.POST.get('password'))
+        blackword = 'admin'
+        if blackword in username:
+            username = username.replace(blackword,'')
+        query = '''SELECT * FROM kiddo_s3qu3l where username='{}' and password='{}';'''.format(username,password)
+        try:
+            cursor.execute(query)
+            result = cursor.fetchone()[4]
+            if result!=None:
+                return HttpResponse(result)
+            else:
+                return HttpResponse("Invalid credentials")    
+        except ProgrammingError:
+            return HttpResponse("You have some error in your SQL syntax")
+        except TypeError:
+            return HttpResponse("Invalid credentials")    
+    return render(request,"kiddo_s3qu3l.html")    
 
 
 

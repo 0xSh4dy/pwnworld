@@ -11,5 +11,6 @@ urlpatterns = [
     path('web/babyAdmin',babyAdmin,name='babyAdmin'),
     path("web/robots.txt",TemplateView.as_view(template_name="web/robots.txt",content_type='text/plain')),
     path('web/w723234',w723234,name='w723234'),
-    path('web/whereAreYou',whereAreYou,name='whereAreYou')
+    path('web/whereAreYou',whereAreYou,name='whereAreYou'),
+    path('web/kiddo_s3qu3l',kiddo_s3qu3l,name="kiddo_s3qu3l")
 ]

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something</title>
+    <style>
+        body{
+            list-style: none;
+            background-color: black;
+            color: rgb(14, 235, 14);
+            font-size: 20px;
+        }
+        li{
+            padding-top: 5px;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <code>
+        <li> $flag = "flag{this_is_a_fake_flag}";</li>
+     <li>if(isset($_POST["flag"])){</li>
+        <li>$var = $_POST["flag"];</li>
+        <li>if(strcmp($var,$flag)==0){</li>
+            <li>echo "Some text over here ",$flag;
+        <li>}</li>
+        <li>else{
+            <li>echo "Sorry, you are not admin";</li>
+        <li>}</li>
+    <li>}</li>
+</code>
+</body>
+</html>

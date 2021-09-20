@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare</title>
+    <style>
+        body{
+            background-color: black;
+            color: rgb(2, 236, 2);
+            font-size: 30px;
+            text-align: center;
+        }
+        .inp{
+            padding: 5px;
+            width: 30vw;
+        }
+        input{
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+            background-color: cyan;
+        }
+        #btn{
+            border-radius: 5px;
+            padding: 5px;
+            color: blue;
+        }
+        #btn:hover{
+            cursor: pointer;
+        }
+    
+    </style>
+</head>
+
+<body>
+    <p>I will only allow admins to get in</p>
+    <form action="compare.php" method="post">
+        <input class="inp" type="text" name="name" placeholder="Enter name">
+        <input class="inp" type="password" name="password" placeholder="Enter password">
+        <input id="btn" type="submit" value="Login">
+    </form>
+</body>
+</html>

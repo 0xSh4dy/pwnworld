@@ -4,6 +4,7 @@ from django.db import connection
 # from .models import WebChallenges
 from django.contrib import messages
 from hashlib import md5
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 cursor = connection.cursor()
 
@@ -32,6 +33,8 @@ def baby_sequel(request):
 
 
 # Challenge2 : entête
+@login_required(login_url='http://127.0.0.1:8000/signin')
+
 def entete(request):
     requestHeaders = request.headers
 
@@ -45,7 +48,7 @@ def entete(request):
     return render(request,"entete.html")
 
 # Challenge3: Destination
-
+@login_required(login_url='http://127.0.0.1:8000/signin')
 def destination(request,c):
     for i in range(26):
         response = redirect("/challenges/web/destination/{}".format(i))
@@ -57,6 +60,7 @@ def destinationContd(request):
     return HttpResponse("flag{h3h3_s0_m4ny_r3d1r3c7s_awjndskf3fnd}")
 
 # Challenge4: babyAdmin
+@login_required(login_url='http://127.0.0.1:8000/signin')
 def babyAdmin(request):
     response = render(request,"babyAdmin.html")
     response.set_cookie('user','334c4a4c42fdb79d7ebc3e73b517e6f8')
@@ -83,6 +87,7 @@ def babyAdmin(request):
 
 
 # Challenge5: Where are you?
+@login_required(login_url='http://127.0.0.1:8000/signin')
 def whereAreYou(request):
     return render(request,"whereAreYou.html")
 def w723234(request):

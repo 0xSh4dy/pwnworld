@@ -53,11 +53,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pwnworld.urls'
-
+CSRF_COOKIE_NAME = "csrftoken"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join("stuff/templates"),os.path.join("challenges/templates/web"),os.path.join("challenges/templates/cryptography")],
+        'DIRS': [os.path.join("stuff/templates"),os.path.join("challenges/templates/web"),os.path.join("challenges/templates/cryptography"),os.path.join("tools/templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -132,6 +132,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     "stuff/static",
     "challenges/static",
+    "tools/static"
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

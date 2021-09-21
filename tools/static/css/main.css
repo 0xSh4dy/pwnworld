@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: black;
+    color: rgb(18, 247, 18);
+}
+#head{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 40px;
+    color: cyan;
+}
+.container{
+    margin-top: 10px;
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+}
+.innerContainer{
+    margin: 5px;
+    background-color: rgba(51, 48, 48, 0.932);
+    padding: 10px;
+}
+.innerContainer p{
+    color: yellow;
+    font-size: 30px;
+    text-align: center;
+}
+#valHash{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.values{
+    margin-top: 20px;
+}
+.values p button{
+    margin-top: 10px;
+    background-color: blue;
+    font-size: 25px;
+    width: 10vw;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid white;
+    color: rgb(5, 230, 5);
+}
+.outputArea{
+    padding-left: 10px;
+    position: absolute;
+    bottom: 0px;
+    min-height: 50vh;
+    font-size: 20px;
+    background-color: rgb(37, 37, 35);
+    min-width: 99vw;
+}
+.mode span{
+    color: cyan;
+    margin-left: 10px;
+}
+#inputData{
+    margin-top: 15px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+#outputValue{
+    margin-top: 10px;
+    display: inline;
+    color: orange;
+    margin-left: 10px;
+}
+#calculate{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid white;
+    color: blue;
+    font-size: 15px;
+}
+#clear{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid white;
+    color: blue;
+    font-size: 15px;
+}
+#valConv{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    column-gap: 2px;
+    font-size: 15px;
+}
+#valConv p button{
+    font-size: 15px;
+    height: 50px;
+    color: rgb(79, 241, 79);
+}

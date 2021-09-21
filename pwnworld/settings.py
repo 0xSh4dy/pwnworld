@@ -78,14 +78,12 @@ WSGI_APPLICATION = 'pwnworld.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pwnworld',
-        'USER': 'pwnworld_admin',
+        'USER': 'pwnworldadmin',
         'PASSWORD': db_password,
         'HOST': 'localhost',
-        'PORT':'3306'
-        
-        
+        'PORT':'5432'     
     }
 }
 
@@ -122,7 +120,7 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = email
+EMAIL_HOST_USER = 'pwnworld10@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

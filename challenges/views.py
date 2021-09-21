@@ -1,8 +1,7 @@
 from django.db.utils import ProgrammingError
-from challenges.models import WebChallenges
 from django.shortcuts import render,HttpResponse,redirect
 from django.db import connection
-from .models import WebChallenges
+# from .models import WebChallenges
 from django.contrib import messages
 from hashlib import md5
 # Create your views here.
@@ -15,20 +14,21 @@ cursor = connection.cursor()
 
 # Challenge1 : baby_s3qu3l
 def baby_sequel(request):
-    if request.POST:
-        username = request.POST.get("username","invalid")
-        password = request.POST.get("password","invalid")
-        try:
-            query = '''SELECT * FROM challenges_webchallenges where username='{}' and password='{}';'''.format(username,password)
-            cursor.execute(query)
-            response = cursor.fetchone()[4]
-            if "flag" in response:
-                return HttpResponse(response)
-        except TypeError:
-            return HttpResponse("Invalid credentials")        
-        except ProgrammingError:
-            return HttpResponse("Invalid SQL syntax")      
-    return render(request,"baby_s3qu3l.html") 
+    pass
+#     if request.POST:
+#         username = request.POST.get("username","invalid")
+#         password = request.POST.get("password","invalid")
+#         try:
+#             query = '''SELECT * FROM challenges_webchallenges where username='{}' and password='{}';'''.format(username,password)
+#             cursor.execute(query)
+#             response = cursor.fetchone()[4]
+#             if "flag" in response:
+#                 return HttpResponse(response)
+#         except TypeError:
+#             return HttpResponse("Invalid credentials")        
+#         except ProgrammingError:
+#             return HttpResponse("Invalid SQL syntax")      
+#     return render(request,"baby_s3qu3l.html") 
 
 
 # Challenge2 : entête
@@ -90,25 +90,26 @@ def w723234(request):
 
 #Challenge6: kiddo_s3qu3l
 def kiddo_s3qu3l(request):
-    if request.POST:
-        username = str(request.POST.get('username'))
-        password = str(request.POST.get('password'))
-        blackword = 'admin'
-        if blackword in username:
-            username = username.replace(blackword,'')
-        query = '''SELECT * FROM kiddo_s3qu3l where username='{}' and password='{}';'''.format(username,password)
-        try:
-            cursor.execute(query)
-            result = cursor.fetchone()[4]
-            if result!=None:
-                return HttpResponse(result)
-            else:
-                return HttpResponse("Invalid credentials")    
-        except ProgrammingError:
-            return HttpResponse("You have some error in your SQL syntax")
-        except TypeError:
-            return HttpResponse("Invalid credentials")    
-    return render(request,"kiddo_s3qu3l.html")    
+    pass
+#     if request.POST:
+#         username = str(request.POST.get('username'))
+#         password = str(request.POST.get('password'))
+#         blackword = 'admin'
+#         if blackword in username:
+#             username = username.replace(blackword,'')
+#         query = '''SELECT * FROM kiddo_s3qu3l where username='{}' and password='{}';'''.format(username,password)
+#         try:
+#             cursor.execute(query)
+#             result = cursor.fetchone()[4]
+#             if result!=None:
+#                 return HttpResponse(result)
+#             else:
+#                 return HttpResponse("Invalid credentials")    
+#         except ProgrammingError:
+#             return HttpResponse("You have some error in your SQL syntax")
+#         except TypeError:
+#             return HttpResponse("Invalid credentials")    
+#     return render(request,"kiddo_s3qu3l.html")    
 
 
 

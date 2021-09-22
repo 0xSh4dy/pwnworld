@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 SECRET_KEY = config('SECRET_KEY')
 db_password = config('DB_PASSWORD')
 email = config('EMAIL')
@@ -33,6 +33,7 @@ email_password = config('EMAIL_PASSWORD')
 
 INSTALLED_APPS = [
     'stuff',
+    'corsheaders',
     'challenges',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,18 +41,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
-
+ASGI_APPLICATION = "pwnworld.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1',6379)],
+        },
+    },
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+]
 ROOT_URLCONF = 'pwnworld.urls'
 CSRF_COOKIE_NAME = "csrftoken"
 TEMPLATES = [

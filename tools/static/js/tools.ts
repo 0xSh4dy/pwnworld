@@ -14,6 +14,7 @@ axios.defaults.xsrfCookieName = "csrftoken";
 
  
 async function calc(dataToModify:string,method:string){
+    outputSection.innerHTML = "Calculating..."
     let body:object = {
         val1:dataToModify,
         val2:method
@@ -78,6 +79,18 @@ calculateBtn.addEventListener("click", () => {
     }
     else if(curMode==="base32 decode"){
         calc(inputVal,"base32decode");
+    }
+    else if(curMode==="to hex"){
+        calc(inputVal,"toHex");
+    }
+    else if(curMode==="hex decode"){
+        calc(inputVal,"fromHex");
+    }
+    else if(curMode==="decode binary string"){
+        calc(inputVal,"decodeBS")
+    }
+    else if(curMode==="to binary String"){
+        calc(inputVal,"toBS")
     }
     outputSection.innerHTML = result;
     // let data = string(inputData.value);

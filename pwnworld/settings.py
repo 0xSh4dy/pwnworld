@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'stuff',
     'corsheaders',
     'challenges',
+    'tools',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

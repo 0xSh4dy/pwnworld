@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="/static/css/notes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="addNewNote">
+        <i class="fa fa-plus-circle"><span >New Note</span> </i>
+    </div>
+    <div id="form">
+    <form action="/tools/notes" method="post" id="notesForm">
+        {%csrf_token%}
+        <input type="text" class="note" name="title" id="title" placeholder="Enter title" required>
+        <textarea name="details" class="note" id="details"  rows="10" placeholder="Enter notes" style="resize: none;" required></textarea>
+        <input type="submit" id="submit" value="Save">
+    </form>
+    </div>
+    <div class="notesSection">
+      {%for note in data%}
+      <div class="oneNote">
+      <p class="noteTitle" spellcheck="false">{{note.title}}</p>
+      <p class="noteDetails" spellcheck="false">{{note.details}}</p>
+      <button class="edit btn" >Edit</button>
+      <button class="btn editSave">Save</button>
+      <button class="delete btn">Delete</button>
+      <p class="dateTime">Saved at {{note.date}}, {{note.time}}</p>
+      
+    </div>
+      {%endfor%}
+    </div>
+</body>
+<script src="/static/js/notes.js"></script>
+</html>

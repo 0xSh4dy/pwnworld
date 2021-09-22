@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{{cat}}</title>
+    <style>
+        .challenges{
+            display: grid;
+            grid-template-columns: 30% 30% 30%;
+            column-gap: 5px;
+            row-gap: 5px;
+        }
+        .challenge{
+            background-color: cyan;
+        }
+        .name{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="challenges">
+        {%for challenge in challenges%}
+        <div class="challenge">
+            <p class="name">{{challenge.challenge_name}}</p>
+            <p class="description">{{challenge.description}}</p>
+            <p class="location"><a href="{{challenge.challenge_location}}">{{challenge.challenge_location}}</a> </p>
+            <i style="color: darkblue;" class="fa fa-thumbs-up"></i>
+            <p class="difficulty">{{challenge.difficulty}}</p>
+            <p class="likes">Likes: {{challenge.likes}}</p>
+            <p class="dislikes">Dislikes: {{challenge.dislikes}}</p>
+            <p class="solves">Solves: {{challenge.solves}}</p>
+
+            <i style="color: darkblue;" class="fa fa-thumbs-down"></i>
+            <p class="comments">
+                Comments
+                <i style="color:blue;" class="fa fa-angle-double-down"></i>
+                {{challenge.comments}}
+            </p>
+        </div>
+        {%endfor%}        
+    </div>
+</body>
+</html>

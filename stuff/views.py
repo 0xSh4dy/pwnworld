@@ -1,7 +1,7 @@
 from hashlib import sha256
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
-from .models import Users
+from .models import Users,Challenges
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -9,7 +9,9 @@ from .tokenCreator import generateToken
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 
+cursor = connection.cursor()
 regEmail = ""
 def register(request):
     username = request.POST.get('username',"demoName")
@@ -120,4 +122,92 @@ def logOut(request):
 
 @login_required(login_url='/signin')
 def home(request):
-    return render(request,"home.html")   
+    return render(request,"home.html")  
+
+
+# Challenges
+@login_required(login_url='/signin')
+def challenges(request):
+    return render(request,"challenges.html")
+
+
+@login_required(login_url="/signin")    
+def web(request):
+    query = "SELECT * FROM stuff_challenges WHERE challenge_type='web';"
+    cursor.execute(query)
+    webChallenges = cursor.fetchall()
+    webChals = []
+    flagData = []
+    for webChal in webChallenges:
+        chal = {
+                "challenge_name":webChal[1],
+                "challenge_type":"web",
+                "difficulty":webChal[7],
+                "solves":webChal[3],
+                "likes":webChal[4],
+                "dislikes":webChal[5],
+                "comments":webChal[6],
+                "description":webChal[9],
+                "challenge_location":webChal[10]
+                }
+        flag = {
+            "challenge_name":webChal[1],
+            "challenge_flag":webChal[8]
+        }
+        flagData.append(flag)
+        webChals.append(chal)
+
+    typeData= {"cat":"Web-Exploitation","challenges":webChals}
+    return render(request,"challs.html",typeData)
+
+@login_required(login_url="/signin")    
+def crypto(request):
+    typeData= {"cat":"Cryptography"}
+    return render(request,"challs.html",typeData)
+
+@login_required(login_url="/signin")    
+def pwn(request):
+    typeData= {"cat":"pwn"}
+    return render(request,"challs.html",typeData)
+    
+@login_required(login_url="/signin")    
+def rev(request):
+    typeData= {"cat":"Reverse-Engineering"}
+    return render(request,"challs.html",typeData)
+    
+@login_required(login_url="/signin")    
+def iot(request):
+    typeData= {"cat":"IoT"}
+    return render(request,"challs.html",typeData)
+    
+@login_required(login_url="/signin")    
+def forensics(request):
+    typeData= {"cat":"Forensics"}
+    return render(request,"challs.html",typeData)
+    
+@login_required(login_url="/signin")    
+def jailbreak(request):
+    typeData= {"cat":"Jailbreak"}
+    return render(request,"challs.html",typeData)
+    
+@login_required(login_url="/signin")    
+def osint(request):
+    typeData= {"cat":"OSINT"}
+    return render(request,"challs.html",typeData)
+    
+@login_required(login_url="/signin")    
+def hardware(request):
+    typeData= {"cat":"Hardware"}
+    return render(request,"challs.html",typeData)
+
+@login_required(login_url="/signin")    
+def misc(request):
+    typeData= {"cat":"Miscellaneous"}
+    return render(request,"challs.html",typeData)
+
+
+@login_required(login_url="/signin")    
+def mixed(request):
+  
+    typeData= {"cat":"Mixed"}
+    return render(request,"challs.html",typeData)

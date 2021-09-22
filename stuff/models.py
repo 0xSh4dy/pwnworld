@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from jsonfield import JSONField
 # Creating models
 
 class Users(models.Model):
@@ -8,7 +9,19 @@ class Users(models.Model):
     email=models.EmailField(max_length=250,null=True)
     accountActive = models.BooleanField(null=True)
     challenges_solved = models.IntegerField(null=True)
-    chalsSolvedName = ArrayField(models.CharField(max_length=100,default='none'),null=True)
+    chals_solved_name = ArrayField(models.CharField(max_length=100,default='none'),null=True)
+
+class Challenges(models.Model):
+    challenge_name = models.CharField(max_length=50,null=True)
+    challenge_type = models.CharField(max_length=50,null=True)
+    challenge_location = models.CharField(max_length=500,null=True)
+    flag  = models.CharField(max_length=100,null=True)
+    solves = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+    comments = JSONField(null=True)
+    difficulty = models.CharField(max_length=20,null=True)
+    description = models.CharField(max_length=1000,null=True)
 
 
 

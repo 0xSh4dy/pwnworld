@@ -1,4 +1,6 @@
 ### pwnworld : The CTF platform
+
+### Completion Deadline: 15 October 2021 
 pwn means to hack, gain access over some device, web server etc.
 
 Basic Project Layout:
@@ -12,6 +14,8 @@ pwnworld: The main control panel of our application
 stuff: Data related to users
 tools: A tool for encryption,decryption,encoding,decoding, chat application
 
+### All html files are available in different templates folder
+### All images, CSS, JS files must be placed in respective static folder
 
 Features yet to be implemented:
 

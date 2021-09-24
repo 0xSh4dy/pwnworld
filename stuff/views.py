@@ -100,7 +100,8 @@ def signin(request):
     return render(request,"signin.html")
 
 
-
+def main(request):
+    return render(request,"main.html")
 def confirm(request,token):
     try:
         user = Users.objects.get(email=regEmail)

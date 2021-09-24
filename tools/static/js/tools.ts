@@ -12,7 +12,6 @@ let result: string;
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 axios.defaults.xsrfCookieName = "csrftoken";
 
- 
 async function calc(dataToModify:string,method:string){
     outputSection.innerHTML = "Calculating..."
     let body:object = {
@@ -22,7 +21,7 @@ async function calc(dataToModify:string,method:string){
     let response = "";
     response = await axios({
         method:"POST",
-        url:"http://127.0.0.1:8000/tools/main",
+        url:"http://127.0.0.1:8000/tools/encDec",
         data:body
     })
     result = response.data;

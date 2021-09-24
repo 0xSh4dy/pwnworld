@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.db import connection
+from django.contrib import messages
 import json
 import hashlib
 import binascii
@@ -9,7 +10,7 @@ from .models import Notes
 import datetime
 cursor = connection.cursor()
 @login_required(login_url='http://127.0.0.1:8000/signin')
-def main(request):
+def encDec(request):
     if request.method=="POST":
         data = json.loads(request.body.decode())
         val1 = str(data.get("val1"))
@@ -47,7 +48,7 @@ def main(request):
                 answer = "Invalid input"    
         return HttpResponse(answer)
         
-    return render(request,"main.html")
+    return render(request,"encDec.html")
 
 @login_required(login_url='http://127.0.0.1:8000/signin')
 def discuss(request):
@@ -64,8 +65,33 @@ def notes(request):
         details = request.POST.get("details","invalid")
         curDate = datetime.date.today()
         curTime = datetime.datetime.now().strftime("%H:%M:%S")
-        note = Notes.objects.create(username=username,title=title,details=details,date=curDate,time=curTime)
+        try:
+            sampleNote = Notes.objects.get(title=title)
+            print("Note with that title already exists")
+        except Notes.DoesNotExist:
+            note = Notes.objects.create(username=username,title=title,details=details,date=curDate,time=curTime)
+            note.save()
+        
+        messages.success(request,"New note created")
+        
+
+    elif request.method=="PATCH":
+        data = json.loads(request.body.decode())
+        title = data.get('title')
+        details = data.get('details')
+        note = Notes.objects.get(title=title)
+        note.details = details
+        note.date = datetime.date.today()
+        print(datetime.datetime.now())
+        note.time = datetime.datetime.now().strftime("%H:%M:%S")
         note.save()
+        messages.add_message(request, messages.INFO, 'Hello world.') 
+    elif request.method=="DELETE":
+        data = json.loads(request.body.decode())
+        title = data.get('title')   
+        note = Notes.objects.filter(title=title)
+        note.delete()
+       
     query = "SELECT * from tools_notes where username='{}'".format(username)
     noteData = []
     cursor.execute(query)

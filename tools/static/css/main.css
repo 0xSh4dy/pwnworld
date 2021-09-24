@@ -96,3 +96,13 @@ body{
     height: 50px;
     color: rgb(79, 241, 79);
 }
+#valCiph{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+#valCiph p button{
+    width: fit-content;
+    height: fit-content;
+    font-size: 15px;
+    padding: 5px;
+}

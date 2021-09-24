@@ -60,7 +60,7 @@ function calc(dataToModify, method) {
                     response = "";
                     return [4 /*yield*/, axios({
                             method: "POST",
-                            url: "http://127.0.0.1:8000/tools/main",
+                            url: "http://127.0.0.1:8000/tools/encDec",
                             data: body
                         })];
                 case 1:

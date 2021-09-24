@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby SSRF</title>
+</head>
+<body>
+    <h1>Give me a url. I'll do something for you. Flag is located at /challenges/web/baby_ssrf/flag</h1>
+    <form action="/challenges/web/baby_ssrf" method="GET">
+    <input type="url" name="url" id="url">
+    <input type="submit" value="Search">
+    </form>
+    {{response}}
+</body>
+</html>

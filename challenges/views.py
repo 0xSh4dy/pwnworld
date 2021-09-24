@@ -1,7 +1,7 @@
 from django.db.utils import ProgrammingError
 from django.shortcuts import render,HttpResponse,redirect
 from django.db import connection
-# from .models import WebChallenges
+import requests
 from django.contrib import messages
 from hashlib import md5
 from django.contrib.auth.decorators import login_required
@@ -92,6 +92,24 @@ def whereAreYou(request):
     return render(request,"whereAreYou.html")
 def w723234(request):
     return render(request,"w723234.html")
+
+
+#Challenge6: baby_ssrf
+# def baby_ssrf(request):
+#     inputUrl = request.GET.get("url","invalidUrl")
+#     if inputUrl!="invalidUrl" and '0.0.0' not in inputUrl:
+#         resp = requests.get(url=inputUrl).text
+#         return HttpResponse(resp)
+#     return render(request,"baby_ssrf.html")    
+
+# def baby_ssrf_flag(request):
+#     curUri = request.build_absolute_uri()
+#     if '127.0.0.1' not in curUri:
+#         return HttpResponse("You cannot access this page")
+#     else:
+#         return render(request,"baby_ssrf_flag.html",{'flag':"flag{ssrf_baby_l3v3l}"})    
+
+#Challenge7: demn_chips
 
 #Challenge6: kiddo_s3qu3l
 def kiddo_s3qu3l(request):

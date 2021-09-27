@@ -1,6 +1,6 @@
 ### pwnworld : The CTF platform
 
-### Completion Deadline: 15 October 2021 
+# Completion Deadline: 15 January 2022
 pwn means to hack, gain access over some device, web server etc.
 
 Basic Project Layout:

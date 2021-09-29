@@ -4,7 +4,9 @@ from django.db import connection
 import requests
 from django.contrib import messages
 from hashlib import md5
+from pprint import pprint
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 cursor = connection.cursor()
 
@@ -65,6 +67,7 @@ def babyAdmin(request):
     response = render(request,"babyAdmin.html")
     response.set_cookie('user','334c4a4c42fdb79d7ebc3e73b517e6f8')
     if request.POST:
+        print(request.get_host())
         cookie = str(request.COOKIES['user'])
         cookieValue = cookie
         adminCookie = md5('admin'.encode()).hexdigest()
@@ -95,22 +98,46 @@ def w723234(request):
 
 
 #Challenge6: baby_ssrf
-# def baby_ssrf(request):
-#     inputUrl = request.GET.get("url","invalidUrl")
-#     if inputUrl!="invalidUrl" and '0.0.0' not in inputUrl:
-#         resp = requests.get(url=inputUrl).text
-#         return HttpResponse(resp)
-#     return render(request,"baby_ssrf.html")    
+@login_required(login_url='http://127.0.0.1:8000/signin')
+def baby_ssrf(request):
+    inputUrl = request.GET.get("url","invalidUrl")
+    if inputUrl!="invalidUrl" and '0.0.0' not in inputUrl:
+        resp = requests.get(url=inputUrl).text
+        return HttpResponse(resp)
+    return render(request,"baby_ssrf.html")    
 
-# def baby_ssrf_flag(request):
-#     curUri = request.build_absolute_uri()
-#     if '127.0.0.1' not in curUri:
-#         return HttpResponse("You cannot access this page")
-#     else:
-#         return render(request,"baby_ssrf_flag.html",{'flag':"flag{ssrf_baby_l3v3l}"})    
+def baby_ssrf_flag(request):
+    curUri = request.build_absolute_uri()
+    if '127.0.0.1' not in curUri:
+        return HttpResponse("You cannot access this page")
+    else:
+        return render(request,"baby_ssrf_flag.html",{'flag':"flag{ssrf_baby_l3v3l}"})    
 
-#Challenge7: demn_chips
+#Challenge7: coup d'etat
+# @login_required(login_url='http://127.0.0.1:8000/signin')
+@csrf_exempt
+def coup(request):
+    
+    if request.method=="POST":
+        flag = "flag{c0up_d'_3747_7834hre734}"
+        reqUri = request.build_absolute_uri()
+        password = request.POST.get('password','invalid')
+        name = request.POST.get('username','invalid')
+        orig = request.META['HTTP_SEC_FETCH_SITE']
+        print(orig)
+        print(request.headers)
+        if name=='admin' and password=='admin':
+            if orig=='cross-site':
+                return HttpResponse(flag)
+            elif orig=='same-origin':
+                return HttpResponse('Welcome back admin. No flag for you. We do not accept requests from the same origin')    
+        else:
+            return HttpResponse("Invalid credentials")            
+    return render(request,"coup.html")
 
+@csrf_exempt
+def coupCont(request):
+    return render(request,"coupCont.html")
 #Challenge6: kiddo_s3qu3l
 def kiddo_s3qu3l(request):
     pass

@@ -14,6 +14,8 @@ urlpatterns = [
     path('web/whereAreYou',whereAreYou,name='whereAreYou'),
     path('web/kiddo_s3qu3l',kiddo_s3qu3l,name="kiddo_s3qu3l"),
     path('web/baby_ssrf',baby_ssrf,name="baby_ssrf"),
-    path('web/baby_ssrf/flag',baby_ssrf_flag,name="baby_ssrf_flag")
+    path('web/baby_ssrf/flag',baby_ssrf_flag,name="baby_ssrf_flag"),
+    path('web/coup',coup,name='coup'),
+    path('web/coupCont',coupCont,name='coupCont')
 
 ]

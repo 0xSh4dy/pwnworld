@@ -1,6 +1,9 @@
 ### pwnworld : The CTF platform
 
 # Completion Deadline: 15 January 2022
+
+## Homepage : stuff/templates/challenges.html  <br><br>It must contain large, beautiful buttons of different challenge categories. For example, one Button for Web, One for Cryptography, one for pwn, one for reversing, one for IoT, one for Hardware, one for Forensics, one for OSINT, and so on. The page should also have a section with a graph between user's performance vs time. It should also have a Navigation Bar with the following clickables: My Notes, Site Activity, About, Contact, Report Bugs, Contribute
+
 pwn means to hack, gain access over some device, web server etc.
 
 Basic Project Layout:

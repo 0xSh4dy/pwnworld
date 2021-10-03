@@ -1,5 +1,8 @@
 ### pwnworld : The CTF platform
 
+## This project aims to introduce beginners to the concept of Information Security. We aim to teach Information Security to people for free through Jeopardy CTF style challenges .Currently, only easy and medium level challenges are going to be deployed. Over the time,we'' deploy hard challenges too. 
+## Challenges have been created and arranged in such a way that even beginners can easily grab and enjoy the concepts of Information Security
+
 # Completion Deadline: 15 January 2022
 
 ## Homepage : stuff/templates/challenges.html  <br><br>It must contain large, beautiful buttons of different challenge categories. For example, one Button for Web, One for Cryptography, one for pwn, one for reversing, one for IoT, one for Hardware, one for Forensics, one for OSINT, and so on. The page should also have a section with a graph between user's performance vs time. It should also have a Navigation Bar with the following clickables: My Notes, Site Activity, About, Contact, Report Bugs, Contribute

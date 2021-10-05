@@ -10,9 +10,15 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.db import connection
+from ratelimit.decorators import ratelimit
+from decouple import config
+import json
+import requests 
 
 cursor = connection.cursor()
 regEmail = ""
+
+@ratelimit(key='ip',rate='10/h')
 def register(request):
     username = request.POST.get('username',"demoName")
     password = request.POST.get('password',"noPass")
@@ -74,29 +80,39 @@ def register(request):
     else:
         return render(request,"register.html")  
 
-
+@ratelimit(key='ip',rate='8/m')
 def signin(request):
     if request.POST:
         email = request.POST.get('email','invalid')
         password = request.POST.get('password','invalid')
         password = sha256(password.encode()).hexdigest()
-        try:
-            user = Users.objects.get(email=email)
-            if user.accountActive==True:
-                email = user.email
-                username = user.username
-                
-                authUser =authenticate(request,username=username,password=password)
-                if authUser is not None:
-                    login(request,authUser)
-                    return redirect("/home")
-                else:
-                    return HttpResponse("Invalid credentials")  
 
-            else:
-                return HttpResponse("Your account is not activated. Please check the email sent before. If it does not work, register again")    
-        except Users.DoesNotExist:
-            return HttpResponse("Account with that email does not exist")
+        # Recaptcha validation
+        clientkey = request.POST["g-recaptcha-response"]
+        secretKey = config("RECAPTCHA_PRIVATE_KEY")
+        captcha = {"secret":secretKey,"response":clientkey}
+        res = requests.post(url="https://www.google.com/recaptcha/api/siteverify",data=captcha).text
+        res = json.loads(res)
+
+        if(res.get('success')==True):
+            try:
+                user = Users.objects.get(email=email)
+                if user.accountActive==True:
+                    email = user.email
+                    username = user.username
+                    authUser =authenticate(request,username=username,password=password)
+                    if authUser is not None:
+                        login(request,authUser)
+                        return redirect("/home")
+                    else:
+                        return HttpResponse("Invalid credentials")  
+
+                else:
+                    return HttpResponse("Your account is not activated. Please check the email sent before. If it does not work, register again")    
+            except Users.DoesNotExist:
+                return HttpResponse("Account with that email does not exist")
+        else:
+            return HttpResponse("Recaptcha validation failed")        
     return render(request,"signin.html")
 
 
@@ -132,7 +148,8 @@ def challenges(request):
     return render(request,"challenges.html")
 
 
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
+@ratelimit(key='ip',rate='3/m')
 def web(request):
     query = "SELECT * FROM stuff_challenges WHERE challenge_type='web';"
     cursor.execute(query)
@@ -161,52 +178,66 @@ def web(request):
     typeData= {"cat":"Web-Exploitation","challenges":webChals}
     return render(request,"challs.html",typeData)
 
+@ratelimit(key='ip',rate='10/m',method=ratelimit.ALL)
 @login_required(login_url="/signin")    
 def crypto(request):
     typeData= {"cat":"Cryptography"}
-    return render(request,"challs.html",typeData)
+    was_limited = getattr(request, 'limited', False)
+    print(was_limited)
+    if was_limited:
+        return HttpResponse("DoS attack discovered. Your IP address has been noted.")
+    else:
+        return render(request,"challs.html",typeData)
 
+@ratelimit(key='user_or_ip',rate='10/m')
 @login_required(login_url="/signin")    
 def pwn(request):
     typeData= {"cat":"pwn"}
     return render(request,"challs.html",typeData)
     
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def rev(request):
     typeData= {"cat":"Reverse-Engineering"}
     return render(request,"challs.html",typeData)
-    
+
+@ratelimit(key='user_or_ip',rate='3/m')    
 @login_required(login_url="/signin")    
 def iot(request):
     typeData= {"cat":"IoT"}
     return render(request,"challs.html",typeData)
     
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def forensics(request):
     typeData= {"cat":"Forensics"}
     return render(request,"challs.html",typeData)
     
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def jailbreak(request):
     typeData= {"cat":"Jailbreak"}
     return render(request,"challs.html",typeData)
     
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def osint(request):
     typeData= {"cat":"OSINT"}
     return render(request,"challs.html",typeData)
     
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def hardware(request):
     typeData= {"cat":"Hardware"}
     return render(request,"challs.html",typeData)
 
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def misc(request):
     typeData= {"cat":"Miscellaneous"}
     return render(request,"challs.html",typeData)
 
-
+@ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def mixed(request):
   

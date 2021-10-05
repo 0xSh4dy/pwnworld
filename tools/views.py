@@ -9,7 +9,7 @@ import base64
 from .models import Notes
 import datetime
 cursor = connection.cursor()
-@login_required(login_url='http://127.0.0.1:8000/signin')
+# @login_required(login_url='http://127.0.0.1:8000/signin')
 def encDec(request):
     if request.method=="POST":
         data = json.loads(request.body.decode())
@@ -50,13 +50,13 @@ def encDec(request):
         
     return render(request,"encDec.html")
 
-@login_required(login_url='http://127.0.0.1:8000/signin')
+# @login_required(login_url='http://127.0.0.1:8000/signin')
 def discuss(request):
     user = str(request.user)
     response = render(request,"discuss.html",{'user':user})
     return response   
 
-@login_required(login_url='http://127.0.0.1:8000/signin')
+# @login_required(login_url='http://127.0.0.1:8000/signin')
 def notes(request):
     username = str(request.user)
     if request.method=="POST":

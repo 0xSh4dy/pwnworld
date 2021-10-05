@@ -1,0 +1,20 @@
+version: '3'
+id: baby_heap
+name: baby_heap
+type: pwn
+description: |
+  I am tired of solving stack buffer overflows. I need something new.
+
+
+  Author: sh4dy
+connection_info: nc ${host} ${port}
+
+tags:
+  - easy
+
+files:
+  - ./challenge/babyHeap
+
+flags:
+  - flag{1n7t0_t0_h34p_0v3rfl0w_iou23h24hb}
+    

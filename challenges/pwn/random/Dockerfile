@@ -27,4 +27,4 @@ RUN apt-get install socat
 EXPOSE 5002
 
 #Run the program with socat
-CMD su pwn -c "socat TCP-LISTEN:5002,reuseaddr,fork EXEC:/home/pwn/fmt"
+CMD su pwn -c "/home/pwn/fmt"

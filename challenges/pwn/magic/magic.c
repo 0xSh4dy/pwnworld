@@ -1,8 +1,24 @@
-#include<signal.h>
-#include<stdlib.h>
-#include<stdio.h>
-#include<unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <string.h>
+void ignore_me_init_buffering() {
+	setvbuf(stdout, NULL, _IONBF, 0);
+	setvbuf(stdin, NULL, _IONBF, 0);
+	setvbuf(stderr, NULL, _IONBF, 0);
+}
 
+void kill_on_timeout(int sig) {
+  if (sig == SIGALRM) {
+  	printf("[!] Anti DoS Signal. Patch me out for testing.");
+    _exit(0);
+  }
+}
+void ignore_me_init_signal() {
+	signal(SIGALRM, kill_on_timeout);
+	alarm(60);
+}
 int flag = 0;
 void signal1_handler(){
     if(!flag){
@@ -28,6 +44,8 @@ void signal3_handler(){
 
 int main(int argc, char **argv){
     char name[20];
+    ignore_me_init_buffering();
+    ignore_me_init_signal();
     signal(SIGINT,signal2_handler);
     signal(SIGTSTP,signal3_handler);
     signal(SIGQUIT,signal1_handler);

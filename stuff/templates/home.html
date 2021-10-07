@@ -8,7 +8,7 @@
 
 
   <title>PWN World</title>
-  <link rel="stylesheet" href="./static/index.css">
+  <link rel="stylesheet" href="/static/css/index1.css">
 </head>
 
 
@@ -23,56 +23,75 @@
   <!-- First Page -->
   <div class="first-page">
     <div class="first-page-upper">
-      <img src="./static/images/logo.png" class="logo" alt="">
+      <img src="/static/images/pwnlogo0-01.png" class="logo" alt="">
       <div class="upper-text">
         <h2>PWNWORLD</h2>
         </div>
     </div>
     <div class="links">
-      <a href=""> <span>Challenges</span></a>
-      <a href="">Practice</a>
+      <a href="#challenges"> <span>Challenges</span></a>
+      <a href="/tools/notes">My Notes</a>
+      <a href="/tools/encDec">Tools</a>
+      <a href="/tools/discussions">Chat</a>
       <a href="">Leader-Board</a>
-      <a href="">Sign-in</a>
-      <a href="">About</a>
+      <a href="/logout">Logout</a>
+      <a href="#about">About</a>
     </div>
     <div class="first-page-middle">
-      <p>Explore the new world<br> of Ha<span>4</span>cking</p>
+      <p>Explore the new world<br> of H<span>4</span>cking</p>
     </div>
     <button type="button" class="start" name="button">GET STARTED</button>
   </div>
 
   <!-- Middle Page -->
-  <div class="middle-page">
+  <div class="middle-page" id="challenges">
 
     <div class="tag">
       <h1>T<span>#</span>gs</h1>
     </div>
     <div class="buttons">
-      <button type="button" name="button">Web</button>
-      <button type="button" name="button">Cryptography</button>
-      <button type="button" name="button">PWN</button>
+      <button type="button" class="chalBtn" name="button">Web</button>
+      <button type="button" class="chalBtn" name="button">Cryptography</button>
+      <button type="button" class="chalBtn" name="button">pwn</button>
       <br>
-      <button type="button" name="button">Reversing</button>
-      <button type="button" name="button">Hardware</button>
-      <button type="button" name="button">Forensics</button>
+      <button type="button" class="chalBtn" name="button">Reversing</button>
+      <button type="button" class="chalBtn" name="button">Hardware</button>
+      <button type="button" class="chalBtn" name="button">Forensics</button>
       <br>
-      <button type="button" name="button">OSINT</button>
+      <button type="button" class="chalBtn" name="button">OSINT</button>
+      <button type="button" class="chalBtn" name="button">Jailbreak</button>
+      <button type="button" class="chalBtn" name="button">Misc</button>
+
     </div>
    </div>
 
 
   <!-- Last Page -->
   <div class="last-page">
-    <div class="about">
+    <div class="about" id="about">
       <h1>Ab<span>O</span>ut</h1>
     </div>
     <div class="last-page-text">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        pwnworld is a platform for learning Information Security through some CTF style challenges. Each challenge contains some security vulnerability which has to be exploited by the player in order to get the solution. A flag (a string which indicates that the user has successfully solved a challenge) is provided to the user if he successfully solves the challenge.
       </p>
     </div>
   </div>
+<script>
+  var btns = document.querySelectorAll(".chalBtn");
+  const goToChalPage= (inpBtn)=>{
+    inpBtn = String(inpBtn).toLocaleLowerCase();
+    window.location.href = `http://127.0.0.1:8000/challenges/${inpBtn}`;  
+    
+  }
+  btns.forEach((btn)=>{
+    btn.addEventListener("click",(e)=>{
+      btnText = e.target.innerText;
+      goToChalPage(btnText);
+    })
+  })
+
+</script>
 </body>
 
 </html>

@@ -1,65 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>SignIn</title>
+    <HEAD>
+        <title>
+            pwnworld_
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link rel="stylesheet" href="static/css/signin.css"> -->
-</head>
+        <link rel="stylesheet" href="/static/css/signin.css">
+<style>
 
+</style>
+</head>
 <body>
 
-<!-- <div id="grad1">
+<div id="grad1">
     <div class="element9">
-      <img src="static/images/element1.png" alt="au" height="100%" >
+      <img src="/static/images/element1.png" alt="au" height="100%" >
     </div>
     <div id="rcorners1">
-      
-
+      <div class="frm">
+        {{message}}
+        <form action="/signin" method="post">
+            {%csrf_token%}
+            <input type="email" name="email" placeholder="Enter email" required>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <input type="submit" value="SignIn" id="submit">
+            <div class="g-recaptcha" data-sitekey="6LfLKq4cAAAAALgURRA7rMnP4KjYfKswJv5-LvzI"></div>
+        </form>
     </div>
-    <div id="rcorners2">
+    </div> 
 
-    </div>
-    
     <div class="relative">
-    <img src= "static/images/pwnlogo0-01.png" style="width:5%;">
+    <img src= "/static/images/pwnlogo0-01.png" style="width:5%;">
     </div>
-    <p class="p1">PWNWORLD</p> -->
-    {{message}}
-    <form action="/signin" method="post">
-        {%csrf_token%}
-        <input type="email" name="email" placeholder="Enter email" required>
-        <input type="password" name="password" placeholder="Enter password" required>
-        <input type="submit" value="SignIn">
-        <div class="g-recaptcha" data-sitekey="6LfLKq4cAAAAALgURRA7rMnP4KjYfKswJv5-LvzI"></div>
-    </form>
- 
-    <!-- <div class="element1">
-
-    </div>
-    <div class="element2">
-
-    </div>
-    <div class="element3">
-
-    </div>
-    <div class="element4">
-
-    </div>
-    <div class="element5">
-
-    </div>
-    <div class="element6">
-
-    </div>
-    <div class="element7">
-
-    </div>
-    <div class="element8">
-
-    </div> -->
+    <p class="p1">PWNWORLD</p>
+   
     
-<!-- </div> -->
+</div>
+
+
+
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
+

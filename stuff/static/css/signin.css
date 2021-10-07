@@ -155,23 +155,28 @@ body, html {
   position: absolute;
   border-radius: 10px;
   background: #333333;
+  
+  height: fit-content;
   border: 1px solid #808080;
   padding: 20px; 
-  width: 400px;
-  height: 150px; 
+  width: 30vw;
   left:35%;
-  top:35%;
+  top:30%;
 
 }
-#rcorners2 {
-  position: absolute;
+form input{
+  display: block;
+  background-color: rgb(49, 44, 44);
   border-radius: 10px;
-  background: #1A1A1A;
-  
-  padding: 20px; 
-  width: 399.5px;
-  height: 0.2px; 
-  left:450.5px;
-  top:213px;
+  margin-top: 10px;
+  padding: 5px;
+  color: white;
+}
+#submit{
+  background-color: aliceblue;
+  color: blue;
 
+}
+.g-recaptcha{
+  margin-top: 20px;
 }

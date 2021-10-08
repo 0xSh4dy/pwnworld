@@ -14,10 +14,90 @@ from ratelimit.decorators import ratelimit
 from decouple import config
 import json
 import requests 
-
+from channels.generic.websocket import AsyncWebsocketConsumer
 cursor = connection.cursor()
 regEmail = ""
 
+class ChallsHandler:
+    def __init__(self,username):
+        self.username = username
+    def checkFlag(self,flag,challenge_name):
+        pass
+    def likeOrDislike(self,reaction,challenge_name):
+        chalObj = Challenges.objects.get(challenge_name=challenge_name)
+        
+        if reaction=='like':
+            chalObj.likes +=1
+            try:
+                chalObj.save()
+            except Exception:
+                return 'Error'    
+            return 'Liked'
+        elif reaction=='dislike':
+            chalObj.dislikes+=1
+            try:
+                chalObj.save()
+            except Exception:
+                return 'Error'                    
+            return 'Disliked'
+        else:
+            return 'Invalid reaction'
+    def comment(self,comment,challenge_name):
+        pass
+    def filter(self,filter):
+        pass
+
+class ChallengeConsumer(AsyncWebsocketConsumer,ChallsHandler):
+    async def connect(self):
+        self.room_name = self.scope['url_route']['kwargs']['room_name']
+        self.room_group_name = 'pwn_%s' % self.room_name
+        await self.channel_layer.group_add(
+            self.room_group_name,
+            self.channel_name
+        )
+        await self.accept()
+# Disconnect
+    async def disconnect(self):
+        await self.channel_layer.group_discard(
+            self.room_group_name,
+            self.channel_name
+        )  
+# Receive message from WebSocket
+    async def receive(self,text_data):
+        text_data_json = json.loads(text_data)
+        message = text_data_json.get('message')
+        user = text_data_json.get('user')
+        data = text_data_json.get('data')
+        print(message)
+        print(user)
+        print(data)
+        if message=='like':
+            pass
+        elif message=='dislike':
+            pass
+        elif message=='flag':
+            pass    
+        # Send message to room group
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type':'chat_message',
+                'message':'Data received',
+                'user':user
+            }
+        )  
+    
+    # Receive message from room group
+    async def chat_message(self, event):
+        message = event['message']
+        user = event['user']
+        # Send message to WebSocket
+        await self.send(text_data=json.dumps({
+            'message': 'Data received',
+            'user':user
+        }))
+       
+           
 @ratelimit(key='ip',rate='10/h')
 def register(request):
     username = request.POST.get('username',"demoName")

@@ -25,7 +25,7 @@
 }
 .location{
     margin-top: 1rem;
-    margin-left: 1.2rem;
+    margin-left: 0.8rem;
 }
 .location a{
     color: rgb(31, 231, 215);
@@ -83,7 +83,7 @@ body{
 }
 
 .filterInfo{
-    margin-left: 1.2rem;
+    margin-left: 1.4rem;
     margin-top: 1rem;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
@@ -95,4 +95,19 @@ body{
     margin-top: 1rem;
     margin-left: 1.2rem;
     padding: 8px;
+}
+#submitFlag{
+    height: 2rem;
+    border-radius: 5px;
+    padding: 3px;
+    color: blue;
+    border: 2px solid lightblue;
+}
+.type{
+    color: white;
+    font-size: 30px;
+    position:relative;
+    bottom: 7vh;
+    font-family: 'Audiowide', cursive;
+    margin-left: 5px;
 }

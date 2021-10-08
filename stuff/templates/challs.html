@@ -7,8 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{cat}}</title>
     <link rel="stylesheet" href="/static/css/challs.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 </head>
 <body>
+    {% include "header.html" %} 
+    <span class="type">
+    {{cat}}
+</span>
     <div class="container">
     <div class="challenges">
         {%for challenge in challenges%}
@@ -23,8 +30,10 @@
             <p class="dislikes"><i style="color: white;font-size:25px" class="fa fa-thumbs-down"></i> {{challenge.dislikes}}</p>
             <p class="solves">Solves: {{challenge.solves}}</p>
             </div>
+            <form action="/challenges/submitFlag" method="post">
             <input type="text" class="flagSubmit" placeholder="flag{the_flag_you_get}">
-            
+            <input type="submit" value="Submit" id="submitFlag">
+            </form>
             <p class="comments">
                 <span>Comments</span>
                 <i id="commentsScroll" style="color:white; font-size:30px;position:relative;top:5px;" class="fa fa-angle-double-down"></i>
@@ -44,5 +53,6 @@
         </ul>
     </div>
 </div>
+<script src="/static/js/challs.js"></script>
 </body>
 </html>

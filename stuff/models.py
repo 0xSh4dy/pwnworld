@@ -10,6 +10,9 @@ class Users(models.Model):
     accountActive = models.BooleanField(null=True)
     challenges_solved = models.IntegerField(null=True)
     chals_solved_name = ArrayField(models.CharField(max_length=100,default='none'),null=True)
+    attack_attempts = models.IntegerField(null=True)
+    is_banned = models.BooleanField(null=True)
+    is_challenge_dev = models.BooleanField(null=True)
 
 class Challenges(models.Model):
     challenge_name = models.CharField(max_length=50,null=True)
@@ -23,5 +26,10 @@ class Challenges(models.Model):
     difficulty = models.CharField(max_length=20,null=True)
     description = models.CharField(max_length=1000,null=True)
 
-
-
+class ChallengeDevs(models.Model):
+    challenge_author = models.TextField(null=True)
+    challenge_name = models.TextField(null=True)
+    challenge_flag = models.TextField(null=True)
+    challenge_difficulty = models.CharField(max_length=20,null=True)
+    challenge_description = models.TextField(null=True)
+    

@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+.challenges{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    column-gap: 5px;
+    row-gap: 5px;
+    word-wrap: break-word;
+}
+.name{
+    color: rgb(131, 183, 228);
+    font-size: 25px;
+}
+.description{
+    margin-top: 2rem;
+    font-size: 24px;
+    margin-left: 1.2rem;
+    color: rgb(18, 231, 18);
+}
+.location{
+    margin-top: 1rem;
+    margin-left: 1.2rem;
+}
+.location a{
+    color: rgb(31, 231, 215);
+    font-size: 17px;
+    letter-spacing: 1px;
+}
+.challenge{
+    background-color: rgb(144, 230, 218);
+    padding: 5px;
+    margin: 5px;
+    background-image: url("/static/images/pwnbg.png");
+    background-size: 100vw 100vh;
+}
+.name{
+    text-align: center;
+}
+body{
+    /* background-image: url("/static/images/pwnbg1.png"); */
+    /* background-size: 100vw 100vh; */
+    background-color: black;
+}
+.comments{
+    margin-top: 1rem;
+    margin-left: 1.2rem;
+    color: rgb(31, 217, 250);
+    font-size: 18px;
+}
+.filter{
+    background-color: rgb(15, 64, 224);
+    color: white;
+    height: fit-content;
+    padding: 10px;
+    position: sticky;
+    top:30vh;
+    right: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.filter li{
+    list-style: none;
+}
+.check{
+    margin-left: 10px;
+}
+.filtTop{
+    text-align: center;
+    font-size: 30px;
+    color: lightblue;
+}
+.filt{
+    font-size: 20px;
+}
+.filter li{
+    margin-top: 10px;
+}
+
+.filterInfo{
+    margin-left: 1.2rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    color: rgb(245, 222, 13);
+    font-size: 1.4rem;
+}
+.flagSubmit{
+    border-radius: 5px;
+    margin-top: 1rem;
+    margin-left: 1.2rem;
+    padding: 8px;
+}

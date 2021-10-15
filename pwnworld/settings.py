@@ -93,7 +93,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pwnworld',
-        'USER': 'pwnworldadmin',
+        'USER': 'user_1',
         'PASSWORD': db_password,
         'HOST': 'localhost',
         'PORT':'5432'     

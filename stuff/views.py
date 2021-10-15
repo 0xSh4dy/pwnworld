@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.db import connection
-from ratelimit.decorators import ratelimit
+#from ratelimit.decorators import ratelimit
 from decouple import config
 import json
 import requests 
@@ -98,7 +98,7 @@ class ChallengeConsumer(AsyncWebsocketConsumer,ChallsHandler):
         }))
        
            
-@ratelimit(key='ip',rate='10/h')
+#@ratelimit(key='ip',rate='10/h')
 def register(request):
     username = request.POST.get('username',"demoName")
     password = request.POST.get('password',"noPass")
@@ -160,7 +160,7 @@ def register(request):
     else:
         return render(request,"register.html")  
 
-@ratelimit(key='ip',rate='8/m')
+#@ratelimit(key='ip',rate='8/m')
 def signin(request):
     if request.POST:
         email = request.POST.get('email','invalid')
@@ -217,19 +217,19 @@ def logOut(request):
     logout(request)
     return redirect("/signin")
 
-@login_required(login_url='/signin')
+#@login_required(login_url='/signin')
 def home(request):
     return render(request,"home.html")  
 
 
 # Challenges
-@login_required(login_url='/signin')
+#@login_required(login_url='/signin')
 def challenges(request):
     return render(request,"challenges.html")
 
 
 # @login_required(login_url="/signin")    
-@ratelimit(key='ip',rate='3/m')
+#@ratelimit(key='ip',rate='3/m')
 def web(request):
     query = "SELECT * FROM stuff_challenges WHERE challenge_type='web';"
     cursor.execute(query)
@@ -258,8 +258,8 @@ def web(request):
     typeData= {"cat":"Web-Exploitation","challenges":webChals}
     return render(request,"challs.html",typeData)
 
-@ratelimit(key='ip',rate='10/m',method=ratelimit.ALL)
-@login_required(login_url="/signin")    
+#@ratelimit(key='ip',rate='10/m',method=ratelimit.ALL)
+#@login_required(login_url="/signin")    
 def crypto(request):
     typeData= {"cat":"Cryptography"}
     was_limited = getattr(request, 'limited', False)
@@ -269,56 +269,56 @@ def crypto(request):
     else:
         return render(request,"challs.html",typeData)
 
-@ratelimit(key='user_or_ip',rate='10/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='10/m')
+#@login_required(login_url="/signin")    
 def pwn(request):
     typeData= {"cat":"pwn"}
     return render(request,"challs.html",typeData)
     
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def rev(request):
     typeData= {"cat":"Reverse-Engineering"}
     return render(request,"challs.html",typeData)
 
-@ratelimit(key='user_or_ip',rate='3/m')    
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')    
+#@login_required(login_url="/signin")    
 def iot(request):
     typeData= {"cat":"IoT"}
     return render(request,"challs.html",typeData)
     
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def forensics(request):
     typeData= {"cat":"Forensics"}
     return render(request,"challs.html",typeData)
     
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def jailbreak(request):
     typeData= {"cat":"Jailbreak"}
     return render(request,"challs.html",typeData)
     
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def osint(request):
     typeData= {"cat":"OSINT"}
     return render(request,"challs.html",typeData)
     
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def hardware(request):
     typeData= {"cat":"Hardware"}
     return render(request,"challs.html",typeData)
 
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def misc(request):
     typeData= {"cat":"Miscellaneous"}
     return render(request,"challs.html",typeData)
 
-@ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+#@ratelimit(key='user_or_ip',rate='3/m')
+#@login_required(login_url="/signin")    
 def mixed(request):
   
     typeData= {"cat":"Mixed"}

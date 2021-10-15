@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{cat}}</title>
-    <link rel="stylesheet" href="/static/css/challs.css">
-    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/challenges.css">
+    <link rel="stylesheet" href="/static/css/headers.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
 </head>
@@ -16,7 +16,7 @@
     <span class="type">
     {{cat}}
 </span>
-    <div class="container">
+<div class="container">
     <div class="challenges">
         {%for challenge in challenges%}
         <div class="challenge">
@@ -26,8 +26,8 @@
             
             <div class="filterInfo">
             <p class="difficulty">{{challenge.difficulty}}</p>
-            <p class="likes"><i style="color: white;font-size:25px" class="fa fa-thumbs-up"></i> {{challenge.likes}}</p>
-            <p class="dislikes"><i style="color: white;font-size:25px" class="fa fa-thumbs-down"></i> {{challenge.dislikes}}</p>
+            <p class="likes"><i style="color: #E04359;font-size:25px" class="fa fa-thumbs-up"></i> {{challenge.likes}}</p>
+            <p class="dislikes"><i style="color: #E04359;font-size:25px" class="fa fa-thumbs-down"></i> {{challenge.dislikes}}</p>
             <p class="solves">Solves: {{challenge.solves}}</p>
             </div>
             <form action="/challenges/submitFlag" method="post">

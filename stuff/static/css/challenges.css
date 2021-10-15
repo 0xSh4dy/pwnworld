@@ -1,61 +1,69 @@
 *{
     padding: 0;
     margin: 0;
+    background-color: #202B39;
 }
+
 .container{
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 85% 15%;
+  
 }
 .challenges{
     display: grid;
-    grid-template-columns: 49% 49%;
-    column-gap: 5px;
-    row-gap: 5px;
+    grid-template-columns: 45% 45%;
+    column-gap: 5%;
+    row-gap: 5%;
     word-wrap: break-word;
 }
+ .challenge
+ {
+     margin:5%;
+     width:75%;
+     border:solid;
+     border-left-color: #E04359; 
+     border-width:5px 5px 5px 10px;
+     border-top-color: #4A687D;
+     border-bottom-color: #4A687D;
+     border-right-color: #4A687D;
+     padding:1rem;
+     
+     border-top-right-radius:5%;
+     border-bottom-right-radius: 5%;
+ }
+
 .name{
-    color: rgb(131, 183, 228);
+    color:#E04359;
     font-size: 25px;
 }
 .description{
     margin-top: 2rem;
     font-size: 24px;
     margin-left: 1.2rem;
-    color: rgb(18, 231, 18);
+    color:white;
 }
 .location{
     margin-top: 1rem;
     margin-left: 0.8rem;
 }
 .location a{
-    color: rgb(31, 231, 215);
-    font-size: 17px;
+    color: #E04359;
+    font-size: 1.5rem;
     letter-spacing: 1px;
-}
-.challenge{
-    background-color: rgb(144, 230, 218);
-    padding: 5px;
-    margin: 5px;
-    background-image: url("/static/images/pwnbg.png");
-    background-size: 100vw 100vh;
 }
 .name{
     text-align: center;
 }
-body{
-    /* background-image: url("/static/images/pwnbg1.png"); */
-    /* background-size: 100vw 100vh; */
-    background-color: black;
-}
+
 .comments{
     margin-top: 1rem;
     margin-left: 1.2rem;
-    color: rgb(31, 217, 250);
+    color: white;
     font-size: 18px;
 }
 .filter{
-    background-color: rgb(15, 64, 224);
-    color: white;
+    
+    color: #E04359;
     height: fit-content;
     padding: 10px;
     position: sticky;
@@ -63,6 +71,7 @@ body{
     right: 10px;
     padding-top: 25px;
     padding-bottom: 25px;
+    padding-left:25%;
 }
 .filter li{
     list-style: none;
@@ -71,9 +80,8 @@ body{
     margin-left: 10px;
 }
 .filtTop{
-    text-align: center;
     font-size: 30px;
-    color: lightblue;
+    color:#4A687D;
 }
 .filt{
     font-size: 20px;
@@ -86,25 +94,26 @@ body{
     margin-left: 1.4rem;
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    color: rgb(245, 222, 13);
+    grid-template-columns: 22% 23% 23% 30%;
+    color: white;
     font-size: 1.4rem;
 }
 .flagSubmit{
     border-radius: 5px;
-    margin-top: 1rem;
-    margin-left: 1.2rem;
+    margin: 2rem 2rem 1rem 1.5rem;
     padding: 8px;
+    color:white;
 }
 #submitFlag{
-    height: 2rem;
+    height: 3rem;
     border-radius: 5px;
-    padding: 3px;
-    color: blue;
-    border: 2px solid lightblue;
+    padding:10px;
+    background-color: #E04359;
+    border-color: #E04359;
+    color:white;
 }
 .type{
-    color: white;
+    color: #E04359;
     font-size: 30px;
     position:relative;
     bottom: 7vh;

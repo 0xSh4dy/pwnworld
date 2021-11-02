@@ -1,0 +1,71 @@
+
+<style>
+    .links{
+        padding: 1%;
+        float: right;
+        font-family: 'Audiowide','cursive';
+    }
+    a{
+        text-decoration: none;
+        color: #ffffff;
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .hover{
+        display: none;
+        position: absolute;
+        right: 0px;
+        background-color: darkslategray;
+        margin-top: 2rem;
+    }
+    .hover a{
+        display: block;
+    }
+    .hover a:hover{
+        background-color: blue;
+        color: yellow;
+    }
+</style>
+<div class="links">
+    <a href="http://127.0.0.1:8001/home#challenges"> <span>Challenges</span></a>
+    <a href="/home">Home</a>
+    <a href="/tools/discussions">Chat</a>
+    <a href="/leaderboard">Leader-Board</a>
+    <a id="settings" onmouseover="this.style.cursor='pointer'">Options</a>
+</div>
+<div class="hover">
+
+    <a id = "my_profile"href="/profile/{{username}}">My Profile</a>
+    <a href="/tools/notes">My Notes</a>
+    <a href="/create">Create a Challenge</a>
+    <a href="/home#about">About Us</a>
+    <a href="/home#contact">Contact Us</a>
+    <a href="/home#rules">Rules</a>
+    <a href="/logout">Logout</a>    
+</div>
+<script type="text/javascript">
+    let hover = document.querySelector(".hover");
+    let my_profile = document.getElementById("my_profile");
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    username = readCookie("username");
+    my_profile.addEventListener("click",(e)=>{
+        my_profile.href = `/profile/${username}`;
+    })
+    document.getElementById("settings").addEventListener("click",()=>{
+        hover.style.display = "block";
+    })
+    hover.addEventListener("mouseleave",()=>{
+        hover.style.display = "none";
+    })
+    
+</script>

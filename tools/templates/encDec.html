@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+    <link rel="stylesheet" href="/static/css/Main.css">
+    <noscript>You need to enable Javascript to run this</noscript>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha1/0.6.0/sha1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.8.0/sha512.min.js"></script>
+    <script src="/static/js/node_modules/blueimp-md5/js/md5.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <p id="head">Tools</p>
+    <div class="container">
+        <div class="innerContainer">
+            <p>Hashing</p>
+            <div id="valHash" class="values">
+                <p class="type">
+                    <button class="hashbtn">md5</button>
+                </p>
+                <p class="type">
+                    <button class="hashbtn">sha1</button>
+                </p>
+                <p class="type">
+                    <button class="hashbtn">sha256</button>
+                </p>
+              
+                <p class="type">
+                    <button class="hashbtn">sha512</button>
+                </p>
+               
+                
+            </div>
+        </div>
+        <div class="innerContainer">
+            <p>Ciphers</p>
+            <div class="values" id="valCiph">
+                <p class="type"><button class="cipherBtn">Caesar</button> </p>
+                <p class="type"><button class="cipherBtn">CaesarBruteForce</button> </p>
+                <p class="type"><button class="cipherBtn smallBtn">RSA</button> </p>
+                <p class="type"><button class="cipherBtn">AES</button> </p>
+                <p class="type"><button class="cipherBtn">DES</button> </p>
+                <p class="type"><button class="cipherBtn">Triple DES</button> </p>
+                <p class="type"><button class="cipherBtn">ROT13</button> </p>
+                <p class="type"><button class="cipherBtn">ROT47</button> </p>
+                <p class="type"><button class="cipherBtn">Blowfish</button> </p>
+                <p class="type"><button class="cipherBtn">XOR</button> </p>
+                <p class="type"><button class="cipherBtn">Stream</button> </p>
+
+            </div>
+        </div>
+        <div class="innerContainer">
+            <p>Converter</p>
+            <div  id="valConv" class="values">
+                <p class="type"><button class="converterBtn">base64 encode</button></p>
+                <p class="type"><button class="converterBtn">base64 decode</button></p>
+                <p class="type"><button class="converterBtn">base32 encode</button></p>
+                <p class="type"><button class="converterBtn">base32 decode</button></p>
+                <p class="type"><button class="converterBtn">to hex</button></p>
+                <p class="type"><button class="converterBtn">hex decode</button></p>
+                <p class="type"><button class="converterBtn">to binary String</button></p>
+                <p class="type"><button class="converterBtn">decode binary string</button></p>
+            </div>
+        </div>
+    </div>
+    <div class="outputArea">
+        <p class="mode">Mode: <span id="mode"></span></p>
+        <div class="outputValues">
+            <label >Enter value: </label>
+            <input type="text" name="" id="inputData" placeholder="Enter value here">
+            <br>
+            <div>
+            <button id="calculate">
+                Calculate
+            </button>
+            <button id="clear" style="margin-left: 20px;">Clear</button>
+        </div>
+            Output:
+            <div id="outputValue">
+            </div>
+        </div>
+    </div>
+  
+    <script type="text/javascript" src="/static/js/tools.js"></script>
+
+</body>
+
+</html>

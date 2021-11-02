@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Home</title>
+  <link rel="stylesheet" href="/static/css/home.css">
+</head>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<body>
+
+  <!-- First Page -->
+  <div class="first-page">
+    <div class="first-page-upper">
+      <img src="/static/images/pwnlogo0-01.png" class="logo" alt="">
+      <div class="upper-text">
+        <h2>PWNWORLD</h2>
+      </div>
+    </div>
+    <div class="header">
+      {% include "header.html" %}
+    </div>
+    <!-- <div class="first-page-middle">
+      <p>Explore the new world<br> of H<span>4</span>cking</p>
+    </div>  -->
+    <div class="chartCont">
+      <div class="canv1" style="width:40vw;height:68vh;display:inline-block;">
+        <canvas id="barChart"></canvas>
+      </div>
+      <div class="canv2" style="width: 58vw;height:68vh;display:inline-block; margin-left:10px">
+        <canvas id="pieChart"></canvas>
+      </div>
+    </div>
+
+
+    <!-- <button type="button" class="start" name="button">GET STARTED</button>  -->
+  </div>
+
+  <div class="second-page">
+    <div class="dashboard">
+      <h1>Dashboard</h1>
+      <div class="dashboardContent">
+
+      </div>
+    </div>
+  </div>
+  <!-- Third Page -->
+  <div class="third-page" id="challenges">
+
+    <div class="tag">
+      <h1>T<span>#</span>gs</h1>
+    </div>
+    <div class="buttons">
+      <button type="button" class="chalBtn" name="button">Web</button>
+      <button type="button" class="chalBtn" name="button">Cryptography</button>
+      <button type="button" class="chalBtn" name="button">pwn</button>
+      <br>
+      <button type="button" class="chalBtn" name="button">Reversing</button>
+      <button type="button" class="chalBtn" name="button">Hardware</button>
+      <button type="button" class="chalBtn" name="button">Forensics</button>
+      <br>
+      <button type="button" class="chalBtn" name="button">OSINT</button>
+      <button type="button" class="chalBtn" name="button">Jailbreak</button>
+      <button type="button" class="chalBtn" name="button">Misc</button>
+
+    </div>
+  </div>
+
+
+  <!-- Last Page -->
+  <div class="fourth-page">
+    <div class="about" id="about">
+      <h1>Ab<span>O</span>ut</h1>
+    </div>
+    <div class="fourth-page-text">
+      <p>
+        pwnworld is a platform for learning Information Security through some CTF style challenges. Each challenge
+        contains some security vulnerability which has to be exploited by the player in order to get the solution. A
+        flag (a string which indicates that the user has successfully solved a challenge) is provided to the user if he
+        successfully solves the challenge.
+      </p>
+      <p>
+        This awesome platform has been designed and developed by four students of Indian Institute of
+        Technology, Roorkee.
+        <li>Rakshit Awasthi (Backend, Frontend, Challenge Developer) &nbsp; &nbsp; <a
+            href="https://github.com/0xSh4dy">https://github.com/0xSh4dy</a></li>
+        <li>Rishav Kumar (Designer) &nbsp; &nbsp; <a href="https://github.com/gr00t143">https://github.com/gr00t143</a>
+        </li>
+        <li>Rishabh Kushwaha (Frontend Developer) &nbsp; &nbsp; <a
+            href="https://github.com/rishukush506">https://github.com/rishukush506</a></li>
+        <li>Prabal Sahu (Frontend Developer) &nbsp; &nbsp;<a
+            href="https://github.com/Kronos-lord-of-time">https://github.com/Kronos-lord-of-time</a></li>
+      </p>
+    </div>
+  </div>
+  <div class="fifth-page">
+
+    <div class="rules" id="rules">
+      <div class="fifth-page-text">
+        <h1>Ru<span>L</span>es</h1>
+        <li>Do not be rude towards other players.</li>
+        <li>Do not use unethical language in the chat section.</li>
+        <li>Do not attack the infrastructure or any challenge by using automatic scanners such as Nmap, gobuster,
+          dirbuster, sqlmap, nosqlmap, brute-forcers etc.</li>
+        <li>DDOS, DOS attacks are strictly prohibited.</li>
+        <li>Some specific challenges would require the use of these tools. It would be clearly mentioned in the
+          challenge if it is required.</li>
+        <li>Attacking the platform infrastructure may lead to temporary or permanent ban.</li>
+        <li>In case you are temporarily banned, contact the admins via discord and provide the assurance that you'll not
+          do any such activity again, which may lead to a ban</li>
+        <li>Brute forcing flags is prohibited.</li>
+        <li>Please do not post any public writeups for any challenge.</li>
+        <li>Kindly agree to the above rules, and enjoy learning Information Security.</li>
+        <li>You may create your own challenges and submit them. The challenges will be deployed after verification and
+          malware analysis(in case of pwn and RE).</li>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="contact" id="contact">
+    <h1>Co<span>N</span>ta<span>ct</span> &nbsp;Us</h1>
+    <div class="contactBox">
+      <div class="contactBox1">
+        <p class="contactText">Email us with any questions or DM us on Instagram. We would be happy
+          to answer your questions.
+        </p>
+        <div class="instaProfiles">
+          <div class="profile1">
+            <a href="https://www.instagram.com/r4ksh1t_/">Rakshit&nbsp; <i class="fa fa-instagram icon-large insta" style="color: rgb(228, 52, 125);font-size:2rem"></i></a><a href="https://www.instagram.com/rishav_k29/">Rishav&nbsp;<i class="fa fa-instagram icon-large insta" style="color: rgb(228, 52, 125);font-size:2rem"></i></a>
+          </div>
+          <div class="profile2">
+            <a href="https://www.instagram.com/prabalps_chakravartein/">Prabal&nbsp; <i class="fa fa-instagram icon-large insta" style="color: rgb(228, 52, 125);font-size:2rem"></i></a><a href="https://www.instagram.com/rishu___kush/">Rishabh&nbsp;<i class="fa fa-instagram icon-large insta" style="color: rgb(228, 52, 125);font-size:2rem"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="contactBox2">
+        <form action="mailto:pwnworld10@gmail.com" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="Enter your name" autocomplete="false">
+          <input type="text" name="email" placeholder="Enter your email" autocomplete="false">
+          <textarea name="comment" id="comment" placeholder="Enter your message"></textarea>
+          <input type="submit" id="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var btns = document.querySelectorAll(".chalBtn");
+    const goToChalPage = (inpBtn) => {
+      inpBtn = String(inpBtn).toLocaleLowerCase();
+      window.location.href = `http://127.0.0.1:8001/challenges/${inpBtn}`;
+
+    }
+    btns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        btnText = e.target.innerText;
+        goToChalPage(btnText);
+      })
+    })
+
+    var dataset = '{{solved_data}}';
+    var diffData = '{{diffData}}';
+
+  </script>
+  <script src="/static/js/home.js"></script>
+</body>
+
+</html>

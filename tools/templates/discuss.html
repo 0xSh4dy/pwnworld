@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+    <style nonce="{{nonce}}">
+        textarea{
+            resize: none;
+            width: 95vw;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/Discuss.css">
+</head>
+<body>
+    
+    <!-- <textarea id="chat-log" rows="20" disabled ></textarea><br> -->
+    <div class="rules">
+        <p>
+            Please use this chat section for discussing useful stuff. The chat messages will
+            disappear if you reload the page or leave the site. Please do not post unethical messages. 
+            Respect all members. Treat them with compassion and kindness. This site is for learning, so 
+            please help guide or teach someone or direct them to resources if they misunderstand something.
+            No talks related to political matters, racism, sexism, etc. Please do not spam the chat. No advertising without consent 
+            of the administrator.Do not ask people to hack any accounts, games, softwares, etc.  Doing so may lead to temporary or 
+            permanent ban. 
+        </p>
+    </div>
+    <div id="chat-log" ></div><br>
+    <div class="chat-input">
+    <input id="chat-message-input" type="text" size="100" placeholder="Enter your message">
+    <input id="chat-message-submit" type="button" value="Send">
+</div>
+    {{ room_name|json_script:"room-name" }}
+    <script nonce="{{nonce}}">
+        var user = "{{user}}"
+    </script>
+    <script src="/static/js/discusS.js" ></script>
+    
+</body>
+<html></html>

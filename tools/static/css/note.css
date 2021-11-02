@@ -1,0 +1,132 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: black;
+    color: rgb(15, 238, 26);
+}
+#notesForm{
+    padding: 5px;
+}
+.mainContainer{
+    display: grid;
+    grid-template-columns: 84% 15% ;
+}
+.note{
+    display: block;
+    margin-top: 5px;
+    padding: 5px;
+}
+#title{
+    width: 25vw;
+}
+#details{
+    width: 25vw;
+}
+#addNewNote{
+    background-color: inherit;
+    width: fit-content;
+}
+#addNewNote i{
+    font-size: 10vh;
+    color: skyblue;
+}
+#addNewNote i span{
+    font-size: 4vh;
+    position: relative;
+    bottom: 10px;
+    margin-left: 5px;
+}
+#submit{
+    border-radius: 5px;
+    background-color: skyblue;
+    color: red;
+    padding: 5px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+#formMain{
+    display: none;
+    position: absolute;
+    right: 20vw;
+    background-color:rgb(226, 224, 224);
+    padding: 10px;
+    height: 50vh;
+}
+#formHeading{
+    font-size: 2rem;
+    color: blue;
+    text-align: center;
+}
+.notesSection{
+    display: grid;
+    grid-template-columns: 32% 32% 32% ;
+    column-gap: 0.5rem;
+    /* row-gap: 1rem; */
+    width: fit-content;
+    padding: 0.4%;
+    height: 95vh;
+    overflow-y: auto;
+}
+.noteTitle{
+    color: cyan;
+    text-align: center;
+    font-size: 25px;
+}
+.noteDetails{
+    margin-top: 10px;
+    font-size: 20px;
+}
+.oneNote{
+    background-color: rgb(53, 49, 49);
+    height: 40vh;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid rgb(223, 215, 215);
+    padding-left: 5px;
+    padding-right: 2px;
+}
+.dateTime{
+    color: yellow;
+    margin-top: 5px;
+}
+.btn{
+    margin-top: 2rem;
+    border-radius: 5px;
+    background-color: cyan;
+    color: blue;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 15px;
+    margin-left: 10px;
+    
+}
+.editSave{
+    display: none;
+}
+#go{
+    display: block;
+    padding: 3px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: cyan;
+    margin-top: 3px;
+    color: blue;
+
+}
+#go:hover{
+    cursor: pointer;
+}
+.searchBar{
+    margin-top: 10vh;
+    background-color: rgb(49, 46, 46);
+    height: fit-content;
+    padding: 5px;
+}
+#search{
+    height: 40px;
+    padding: 5px;
+}

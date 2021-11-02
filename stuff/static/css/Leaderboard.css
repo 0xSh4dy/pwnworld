@@ -1,0 +1,102 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: url("/static/images/pwnbg.png");
+}
+.mainContainer{
+    display: grid;
+    grid-template-columns: 25vw 70vw;   
+}
+.pageCounter{
+    width: 50px;
+}
+#table{
+    background-color: #9877e433;
+    position: relative;
+    top: 10vh;
+}
+tr{
+    width: 68vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 2px solid white;
+    font-size: 3.7vh;
+}
+
+.pages{
+    margin-top: 10vh;
+}
+.first{
+    color: yellow;
+}
+.second{
+    color: rgb(99, 236, 99);
+}
+.third{
+    color: rgb(7, 231, 183);
+}
+
+.pageCounter {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 170px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.pageCounter:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.pageCounter:active {
+    color: #000
+}
+
+.pageCounter:active:after {
+    background: transparent;
+}
+
+.pageCounter:hover:before {
+    opacity: 1;
+}
+
+.pageCounter:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

@@ -1,0 +1,26 @@
+.links{
+    padding: 1%;
+    float: right;
+    font-family: 'Audiowide','cursive';
+}
+a{
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.hover{
+    display: none;
+    position: absolute;
+    right: 0px;
+    background-color: darkslategray;
+    margin-top: 2rem;
+}
+.hover a{
+    display: block;
+}
+.hover a:hover{
+    background-color: blue;
+    color: yellow;
+}

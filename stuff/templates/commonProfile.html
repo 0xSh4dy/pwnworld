@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="/static/css/Profile.css">
+    <link rel="stylesheet" href="/static/css/profileHeader.css">
+
+    <title>Profile</title>
+    
+</head>
+<body>
+    
+<div class="links">
+    <a href="http://127.0.0.1:8001/home#challenges"> <span>Challenges</span></a>
+    <a href="/tools/notes">My Notes</a>
+    <a href="/tools/encDec">Tools</a>
+    <a href="/tools/discussions">Chat</a>
+    <a href="/leaderboard">Leader-Board</a>
+    <a id="settings" onmouseover="this.style.cursor='pointer'">Settings</a>
+</div>
+<div class="hover">
+    <a id="my_profile" href="/profile/">My Profile</a>
+    <a href="/create">Create a Challenge</a>
+    <a href="/home#about">About Us</a>
+    <a href="/home#contact">Contact Us</a>
+    <a href="/home#rules">Rules</a>
+    <a href="/logout">Logout</a>    
+</div>
+<script type="text/javascript">
+    let hover = document.querySelector(".hover");
+    let my_profile = document.getElementById("my_profile");
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+    username = readCookie("username");
+    my_profile.addEventListener("click",(e)=>{
+        my_profile.href = `/profile/${username}`;
+    })
+    document.getElementById("settings").addEventListener("click",()=>{
+        hover.style.display = "block";
+    })
+    hover.addEventListener("mouseleave",()=>{
+        hover.style.display = "none";
+    })
+    
+    let retObj = "{{ret_obj}}";
+    </script>
+    <div class="topContainer">
+        
+    </div>
+    <div class="solvedContainer cont">
+
+    </div>
+
+    <div class="likeContainer cont">
+
+    </div>
+    <div class="dislikeContainer cont">
+
+    </div>
+    <div class="createdContainer cont"></div>

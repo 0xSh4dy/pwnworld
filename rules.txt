@@ -1,0 +1,9 @@
+1. Do not be rude towards other players.
+2. Do not use bad language in the chat section.
+3. Do not attack the infrastructure or any challenge by using automatic scanners such as Nmap, gobuster, dirbuster, sqlmap, nosqlmap, brute-forcers etc.
+4. DDOS, DOS attacks are strictly prohibited.
+5. Some specific challenges would require using these tools. It would be clearly mentioned in the challenge if it is required.
+6. You will be banned if you are found attacking the platform's infrastructure.
+7. Contact the admins via discord if you are banned.
+8. Brute forcing flags is prohibited.
+

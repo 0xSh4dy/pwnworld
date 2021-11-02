@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{{cat}}</title>
+    <link rel="stylesheet" href="/static/css/challs.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="topCont">
+    {% include "header.html" %} 
+    <span class="type">
+    {{cat}}
+        
+</span>
+<div id="messageContainer">
+    
+</div>
+</div>
+    <div class="container">
+    <div class="challenges">
+        {%for challenge in challenges%}
+        <div class="challenge">
+            <p class="name">{{challenge.challenge_name}}</p>
+            <p class="description">{{challenge.description}}</p>
+            <p class="location"><a href="{{challenge.challenge_location}}">{{challenge.challenge_location}}</a> </p>
+            
+            <div class="filterInfo">
+            <p class="difficulty">{{challenge.difficulty}}</p>
+            <p class="likes"><i style="color: white;font-size:25px" class="fa fa-thumbs-up likeBtn"></i><span class="likeCounter">{{challenge.likes}}</span> </p>
+            <p class="dislikes"><i style="color: white;font-size:25px" class="fa fa-thumbs-down dislikeBtn"></i><span class="dislikeCounter">{{challenge.dislikes}}</span></p>
+            <p class="points">Points: {{challenge.points}}</p>
+            <p class="solves">Solves: {{challenge.solves}}</p>
+            </div>
+            <input type="text" class="flagSubmit" placeholder="flag{the_flag_you_get}">
+            <button type="submit" class="submitFlag">Submit</button>
+            <p class="comments">
+                <span>Comments</span>
+                <i id="commentsScroll" style="color:white; font-size:30px;position:relative;top:5px;" class="fa fa-angle-double-down"></i>
+            </p>
+        </div>
+        {%endfor%}  
+           
+    </div>
+    <div class="filter">
+        <p class="filtTop" style="width: 100%;">Filter</p>
+        <ul>
+            <li><span class="filt">Solves</span><input type="checkbox" class="check" name="solves" id="solves"> </li>
+            <li><span class="filt">Points</span><input type="checkbox" class="check" name="points" id="points"></li>
+            <li><span class="filt">Likes</span><input type="checkbox" class="check" name="likes" id="likes"></li>
+        </ul>
+    </div>
+</div>
+<script src="/static/js/challS.js"></script>
+</body>
+</html>

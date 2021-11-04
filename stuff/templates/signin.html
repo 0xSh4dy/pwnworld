@@ -21,11 +21,13 @@
     margin-right: 5vw;
 }
 
+
 #noAccount{
     display: block;
     margin-top: 5vh;
     color: white;
 }
+
 </style>
 </head>
 <body>
@@ -35,6 +37,7 @@
       <img src="/static/images/element1.png" alt="au" height="100%" >
     </div>
     <div id="testing-phase">
+
     <button id="reportBugs" class="btn">Report Bugs</button>
 </div>
     <div id="rcorners1">
@@ -64,8 +67,6 @@
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
-    alert("The site is currently under development(almost complete), testing and penetration testing phase. Please report bugs if you find any!");
-
     document.getElementById("reportBugs").addEventListener("click",()=>{
         window.location.href = "/reportBugs"
     })

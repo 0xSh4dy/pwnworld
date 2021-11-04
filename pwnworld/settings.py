@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:8000",
+    "http://127.0.0.1:8001",
 ]
 ROOT_URLCONF = 'pwnworld.urls'
 CSRF_COOKIE_NAME = "csrftoken"
@@ -132,7 +132,7 @@ USE_L10N = True
 USE_TZ = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'your_email'
+EMAIL_HOST_USER = email
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

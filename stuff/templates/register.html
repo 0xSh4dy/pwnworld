@@ -1,18 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<html>
+    <HEAD>
+        <title>
+            pwnworld_
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/css/Signin.css">
+<style>
+#testing-phase{
+    display: inline-block;
+    width: 40vw;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: white;
+    padding-bottom: 10px;
+}
+#testing-phase button{
+    float: right;
+    margin-right: 5vw;
+}
+</style>
 </head>
 <body>
-    <form action="" method="post">
-        {%csrf_token%}
-        <input type="text" name="username" id="" placeholder="Enter username" required>
-        <input type="password" name="password" id="" placeholder="Enter password" required>
-        <input type="email" name="email" id="" placeholder="Enter email" required>
-        <input type="submit" value="Register">
-    </form>
+
+<div id="grad1">
+    <div class="element9">
+      <img src="/static/images/element1.png" alt="au" height="100%" >
+    </div>
+    <div id="testing-phase">
+    <button id="reportBugs" class="btn">Report Bugs</button>
+</div>
+    <div id="rcorners1">
+      <div class="frm">
+        {{message}}
+        <form action="/register" method="post">
+            {%csrf_token%}
+            <input type="text" name="username" id="username" placeholder="Enter username">
+            <input type="email" name="email" placeholder="Enter email" required>
+            <input type="password" name="password" placeholder="Enter password" required>
+            <input type="submit" class="btn" value="Register" id="submit">
+            <div class="g-recaptcha" data-sitekey="6LfLKq4cAAAAALgURRA7rMnP4KjYfKswJv5-LvzI"></div>
+        </form>
+    </div>
+    </div> 
+
+    <div class="relative">
+    <img src= "/static/images/pwnlogo0-01.png" style="width:5%;">
+    </div>
+    <p class="p1">PWNWORLD</p>
+   
+    
+</div>
+
+
+
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    
+    document.getElementById("reportBugs").addEventListener("click",()=>{
+        window.location.href = "/reportBugs"
+    })
+</script>
 </body>
 </html>
+

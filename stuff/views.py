@@ -51,13 +51,14 @@ def logOut(request):
 
 
 
-@login_required(login_url='/signin')
+# @login_required(login_url='/signin')
 def home(request):
     username = request.user.username
     try:
         user_obj = Users.objects.get(username=username)
         solved_chals = user_obj.chals_solved_name
-        if solved_chals!=None:
+        print(len(solved_chals))
+        if len(solved_chals)!=0:
             solved_chals = tuple(solved_chals)
             params = {'solved':solved_chals}
             query = "SELECT challenge_type FROM stuff_challenges WHERE challenge_name in %(solved)s"
@@ -89,7 +90,7 @@ def report(request):
             return HttpResponse("Thanks for reporting! We'll try to solve that issue")
     
     return render(request,"report.html")
-@login_required(login_url='/signin')
+# @login_required(login_url='/signin')
 def profile(request,name):
     username = request.user.username
     if name==username:
@@ -125,21 +126,21 @@ def profile(request,name):
 
 
 # Challenges
-@login_required(login_url='/signin')
+# @login_required(login_url='/signin')
 def challenges(request):
     return render(request,"challenges.html")
 
 
-@login_required(login_url='/signin')
+# @login_required(login_url='/signin')
 def leaderboard(request):
     return render(request,"leaderboard.html")
     
 # @login_required(login_url="/signin")    
-@ratelimit(key='ip',rate='3/m')
+# @ratelimit(key='ip',rate='3/m')
 def web(request):
     username = request.user.username
     print(username)
-    enc_username = jwt.encode({"username":username},jwt_secret,algorithm="HS256").decode()
+    enc_username = jwt.encode({"username":username},jwt_secret,algorithm="HS256")
     query = "SELECT * FROM stuff_challenges WHERE challenge_type='web';"
     cursor.execute(query)
     webChallenges = cursor.fetchall()
@@ -177,7 +178,7 @@ def web(request):
     return resp
 
 @ratelimit(key='ip',rate='10/m',method=ratelimit.ALL)
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def crypto(request):
     typeData= {"cat":"Cryptography"}
     was_limited = getattr(request, 'limited', False)
@@ -188,7 +189,7 @@ def crypto(request):
         return render(request,"challs.html",typeData)
 
 @ratelimit(key='user_or_ip',rate='10/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def pwn(request):
     typeData= {"cat":"pwn"}
     return render(request,"challs.html",typeData)
@@ -200,43 +201,43 @@ def rev(request):
     return render(request,"challs.html",typeData)
 
 @ratelimit(key='user_or_ip',rate='3/m')    
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def iot(request):
     typeData= {"cat":"IoT"}
     return render(request,"challs.html",typeData)
     
 @ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def forensics(request):
     typeData= {"cat":"Forensics"}
     return render(request,"challs.html",typeData)
     
 @ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def jailbreak(request):
     typeData= {"cat":"Jailbreak"}
     return render(request,"challs.html",typeData)
     
 @ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def osint(request):
     typeData= {"cat":"OSINT"}
     return render(request,"challs.html",typeData)
     
 @ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def hardware(request):
     typeData= {"cat":"Hardware"}
     return render(request,"challs.html",typeData)
 
 @ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def misc(request):
     typeData= {"cat":"Miscellaneous"}
     return render(request,"challs.html",typeData)
 
 @ratelimit(key='user_or_ip',rate='3/m')
-@login_required(login_url="/signin")    
+# @login_required(login_url="/signin")    
 def mixed(request):
   
     typeData= {"cat":"Mixed"}

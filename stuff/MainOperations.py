@@ -1,4 +1,5 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
+from stuff.tokenCreator import JWT_SECRET
 from .ChallengesHandler import ChallsHandler
 import jwt
 import json
@@ -33,6 +34,8 @@ class ChallengeConsumer(AsyncWebsocketConsumer,ChallsHandler):
         try:
             message = text_data_json.get('message')
             user = text_data_json.get('user')
+            chalType = text_data_json.get('fi_id')
+            print(text_data_json)
             try:
                 self.username = jwt.decode(user,jwt_secret,algorithms=["HS256"])
                 print(self.username)
@@ -48,7 +51,8 @@ class ChallengeConsumer(AsyncWebsocketConsumer,ChallsHandler):
                 self.result = ''
                 res = ' '
                 challenge_type = text_data_json.get('challenge_type')
-      
+                print("Right here")
+                chalType = jwt.decode(chalType,JWT_SECRET,algorithms=["HS256"]).get("currentPage")
                 if message=='like':
                     res = await self.handler.likeOrDislike("like",challenge_name,user)
                     self.function = 'like'
@@ -62,7 +66,7 @@ class ChallengeConsumer(AsyncWebsocketConsumer,ChallsHandler):
                     res = await self.handler.comment(comment,challenge_name,user)
                     self.function='comment'
                 elif message=='filter':
-                    res = await self.handler.filter(filter,user)    
+                    res = await self.handler.filter(filter,chalType)    
                     self.function ='filter'
                 self.result = res
             except InvalidSignatureError:

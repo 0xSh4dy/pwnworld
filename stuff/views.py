@@ -7,7 +7,7 @@ from .models import Users,Challenges
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from .tokenCreator import generateToken
+from .tokenCreator import JWT_SECRET, generateToken
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -50,7 +50,6 @@ def logOut(request):
 
 
 
-
 # @login_required(login_url='/signin')
 def home(request):
     username = request.user.username
@@ -64,7 +63,30 @@ def home(request):
             query = "SELECT challenge_type FROM stuff_challenges WHERE challenge_name in %(solved)s"
             cursor.execute(query,params)
             res = cursor.fetchall()
-            dat = '''{"web":"10","pwn":"15","rev":"5","crypto":"9","osint":"12","hardware":"3","misc":"20","jailbreak":"2","forensics":"11"}'''
+            print(res)
+            countWeb=0;countPwn=0;countRev=0;countCrypto=0;countOsint=0;countHardware=0;countMisc=0;countJailbreak=0;countForensics=0;
+            for r in res:
+                if r[0]=='web':
+                    countWeb+=1
+                elif r[0]=='pwn':
+                    countPwn+=1
+                elif r[0]=='rev':
+                    countRev+=1
+                elif r[0]=='crypto':
+                    countCrypto+=1
+                elif r[0]=='osint':
+                    countOsint+=1
+                elif r[0]=='hardware':
+                    countHardware+=1
+                elif r[0]=='forensics':
+                    countForensics+=1
+                elif r[0]=='misc':
+                    countMisc+=1
+                elif r[0]=='jailbreak':
+                    countJailbreak+=1    
+            
+            dat = {"web":countWeb,"pwn":countPwn,"rev":countRev,"crypto":countCrypto,"osint":countOsint,"hardware":countHardware,"misc":countMisc,"jailbreak":countJailbreak,"forensics":countForensics}
+            dat = json.dumps(dat)
             diffData = '''{"easy":"20","medium":"15","hard":"5"}'''
         else:
             dat = '''{"web":"0","pwn":"0","rev":"0","crypto":"0","osint":"0","hardware":"0","misc":"0","jailbreak":"0","forensics":"0"}'''
@@ -137,108 +159,145 @@ def leaderboard(request):
     
 # @login_required(login_url="/signin")    
 # @ratelimit(key='ip',rate='3/m')
-def web(request):
-    username = request.user.username
-    print(username)
+def renderChallenges(req,type):
+    username = req.user.username
+    # print(username)
     enc_username = jwt.encode({"username":username},jwt_secret,algorithm="HS256")
-    query = "SELECT * FROM stuff_challenges WHERE challenge_type='web';"
+    query = "SELECT * FROM stuff_challenges WHERE challenge_type='{}';".format(type)
     cursor.execute(query)
-    webChallenges = cursor.fetchall()
-    webChals = []
+    Challenges = cursor.fetchall()
+    Chals = []
     flagData = []
     # u = User.objects.get(username='rakshit')
     # u.set_password('aaaa')
     # u.save()
-    for webChal in webChallenges:
+    for Chal in Challenges:
         chal = {
-                "challenge_name":webChal[1],
+                "challenge_name":Chal[1],
                 "challenge_type":"web",
-                "difficulty":webChal[7],
-                "solves":webChal[3],
-                "likes":webChal[4],
-                "dislikes":webChal[5],
-                "comments":webChal[6],
-                "points":webChal[11],
-                "description":webChal[9],
-                "challenge_location":webChal[10]
+                "difficulty":Chal[7],
+                "solves":Chal[3],
+                "likes":Chal[4],
+                "dislikes":Chal[5],
+                "comments":Chal[6],
+                "points":Chal[11],
+                "description":Chal[9],
+                "challenge_location":Chal[10]
                 }
         flag = {
-            "challenge_name":webChal[1],
-            "challenge_flag":webChal[8]
+            "challenge_name":Chal[1],
+            "challenge_flag":Chal[8]
         }
         flagData.append(flag)
-        webChals.append(chal)
+        Chals.append(chal)
     s2 = ''.join(random.choices(string.ascii_letters+string.digits,k=10))
     r1 =  enc_username + room_secret + s2
     r1 = sha256(r1.encode()).hexdigest()
-    typeData= {"cat":"Web_Exploitation","challenges":webChals}
-    resp = render(request,"challs.html",typeData)
+    fi_id = ''
+    if type=='web':
+        typeData= {"cat":"Web_Exploitation","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"web"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='pwn':
+        typeData= {"cat":"pwn","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"pwn"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='forensics':
+        typeData= {"cat":"Digital_Forensics","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"forensics"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='rev':
+        typeData= {"cat":"Reverse_Engineering","challenges":Chals}
+        fi_id=jwt.encode({"rev":"web"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='crypto':
+        typeData= {"cat":"Cryptography","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"crypto"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='network':
+        typeData= {"cat":"Networking","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"network"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='hardware':
+        typeData= {"cat":"Hardware","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"hardware"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='osint':
+        typeData= {"cat":"OSINT","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"osint"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='jailbreak':
+        typeData= {"cat":"Jailbreak","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"jailbreak"},JWT_SECRET,algorithm="HS256")
+
+    elif type=='misc':
+        typeData= {"cat":"Misc","challenges":Chals}
+        fi_id=jwt.encode({"currentPage":"misc"},JWT_SECRET,algorithm="HS256")
+
+            
+    resp = render(req,"challs.html",typeData)
     resp.set_cookie("auth",enc_username)
     resp.set_cookie("r1",r1)
+    resp.set_cookie("fi_id",fi_id)
     return resp
+
+def web(request):
+    res = renderChallenges(request,'web')
+    return res    
+
 
 @ratelimit(key='ip',rate='10/m',method=ratelimit.ALL)
 # @login_required(login_url="/signin")    
 def crypto(request):
-    typeData= {"cat":"Cryptography"}
-    was_limited = getattr(request, 'limited', False)
-    print(was_limited)
-    if was_limited:
-        return HttpResponse("DoS attack discovered. Your IP address has been noted.")
-    else:
-        return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'crypto')
+    return res
 
 @ratelimit(key='user_or_ip',rate='10/m')
 # @login_required(login_url="/signin")    
 def pwn(request):
-    typeData= {"cat":"pwn"}
-    return render(request,"challs.html",typeData)
-    
+    res = renderChallenges(request,'pwn')    
+    return res
+
 @ratelimit(key='user_or_ip',rate='3/m')
 @login_required(login_url="/signin")    
 def rev(request):
-    typeData= {"cat":"Reverse-Engineering"}
-    return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'rev')
+    return res
+
 
 @ratelimit(key='user_or_ip',rate='3/m')    
 # @login_required(login_url="/signin")    
-def iot(request):
-    typeData= {"cat":"IoT"}
-    return render(request,"challs.html",typeData)
+def network(request):
+    res = renderChallenges(request,'network')
+    return res
     
 @ratelimit(key='user_or_ip',rate='3/m')
 # @login_required(login_url="/signin")    
 def forensics(request):
-    typeData= {"cat":"Forensics"}
-    return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'forensics')
+    return res
     
 @ratelimit(key='user_or_ip',rate='3/m')
 # @login_required(login_url="/signin")    
 def jailbreak(request):
-    typeData= {"cat":"Jailbreak"}
-    return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'jailbreak')
+    return res
     
 @ratelimit(key='user_or_ip',rate='3/m')
 # @login_required(login_url="/signin")    
 def osint(request):
-    typeData= {"cat":"OSINT"}
-    return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'osint')
+    return res
     
 @ratelimit(key='user_or_ip',rate='3/m')
 # @login_required(login_url="/signin")    
 def hardware(request):
-    typeData= {"cat":"Hardware"}
-    return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'hardware')
+    return res
 
 @ratelimit(key='user_or_ip',rate='3/m')
 # @login_required(login_url="/signin")    
 def misc(request):
-    typeData= {"cat":"Miscellaneous"}
-    return render(request,"challs.html",typeData)
+    res = renderChallenges(request,'misc')
+    return res
 
-@ratelimit(key='user_or_ip',rate='3/m')
-# @login_required(login_url="/signin")    
-def mixed(request):
-  
-    typeData= {"cat":"Mixed"}
-    return render(request,"challs.html",typeData)

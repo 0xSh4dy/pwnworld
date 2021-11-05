@@ -80,7 +80,7 @@ class ChallsHandler:
                             event.save()
                             return {"like":"Liked a challenge","chal_name":challenge_name,"username":username}
                         except Challenges.DoesNotExist:
-                            return False
+                            return "No such challenge exists"
                     elif challenge_name in usr_obj.liked_challenges:
                         
                         return "Already liked"
@@ -100,7 +100,7 @@ class ChallsHandler:
                             return {"like":"Liked a challenge","chal_name":challenge_name,"username":username}
 
                         except Challenges.DoesNotExist:
-                            return False    
+                            return "No such challenge exists"    
                 elif reaction=='dislike':
                     if usr_obj.disliked_challenges==None:
                         usr_obj.disliked_challenges=[]
@@ -153,21 +153,23 @@ class ChallsHandler:
         except Challenges.DoesNotExist:
             return False    
     @sync_to_async        
-    def filter(self,filter,user):
+    def filter(self,filter,type):
         try:
             if filter=="solves":
-                query = "SELECT * FROM stuff_challenges ORDER BY solves DESC;"
+                query = "SELECT * FROM stuff_challenges WHERE challenge_type='{}' ORDER BY solves DESC;".format(type)
             elif filter=="points":
-                query = "SELECT * FROM stuff_challenges ORDER BY challenge_points;"
+                query = "SELECT * FROM stuff_challenges WHERE challenge_type='{}' ORDER BY challenge_points;".format(type)
             elif filter=="likes":
-                query = "SELECT * FROM stuff_challenges ORDER BY likes DESC;"    
+                query = "SELECT * FROM stuff_challenges WHERE challenge_type='{}' ORDER BY likes DESC;".format(type)    
             cursor.execute(query)
             result = cursor.fetchall()
+            print(result)
             res = []
             for r in result:
                 li = list(r)
                 li.pop(8)
                 res.append(li)
             return res
-        except Exception:
+        except Exception as e:
+            print(e)
             return False

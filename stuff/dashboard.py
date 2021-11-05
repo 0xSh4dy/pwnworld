@@ -25,7 +25,7 @@ class DashboardConsumer(AsyncWebsocketConsumer):
         query = "SELECT * FROM stuff_events ORDER BY id DESC LIMIT 20;"
         cursor.execute(query)
         result = cursor.fetchall()
-        print(result)
+        # print(result)
         await self.channel_layer.group_send(
             self.room_group_name,{
                 'type':'chat_message',

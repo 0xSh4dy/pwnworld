@@ -15,12 +15,12 @@ urlpatterns = [
     path('challenges/cryptography',crypto,name='crypto'),
     path('challenges/pwn',pwn,name='pwn'),
     path('challenges/reversing',rev,name='rev'),
-    path('challenges/iot',iot,name='iot'),
+    path('challenges/network',network,name='network'),
     path('challenges/hardware',hardware,name='hardware'),
     path('challenges/jailbreak',jailbreak,name='jailbreak'),
     path('challenges/osint',osint,name='osint'),
     path('challenges/forensics',forensics,name='forensics'),
     path('challenges/misc',misc,name='misc'),
-    path('challenges/mixed',mixed,name='mixed'),
+
     path('reportBugs',report,name='report')
 ]
